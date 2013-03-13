@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Allahundkurser</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:300,500,300italic">
+  <link rel="shortcut icon" href="favicon.png" />
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr31V9bZKa2TSUVPiNPJEINT3LFRAkuxY&sensor=false"></script>
+  <script src="http://j.maxmind.com/app/geoip.js"></script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "ur-1eb36199-4464-7571-f771-d8f46574b177"});</script> 
+
+</head>
+
+<body onload="initialize()">
+<div id="topline"></div>
+<div id="topbar-wrapper">
+	<div id="search-wrapper">
+		<div id="search-img">
+			<img src="/assets/search-symbol.png">
+		</div>
+		<form action="search.php" method="GET">
+			<input type="text" class="searchbox" onfocus="this.placeholder = ''" placeholder="S&ouml;k p&aring; stad, landskap eller kurstyp" name="query" />
+		<imput type="submit" value="Search" /></form>
+	</div>
+</div>
+
+<%= yield %>
+
+<div id="footer-wrapper"></div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div id="pagewrap">
+	<div id="share-wrapper">
+		<span class='st_sharethis_hcount' displayText='ShareThis' style="float:right"></span>
+		<span class='st_facebook_hcount' displayText='Facebook' style="float:right"></span>
+		<span class='st_twitter_hcount' displayText='Tweet' style="float:right"></span>
+	</div>
+	
+	<div id="header-wrapper">
+		<div id="header-logo">
+			<img src="../assets/logo_test.png">
+		</div>
+		<div id="header-text">
+			<h1>allahundkurser.se</h1>
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+		</div>
+	</div>
+
+	<div id="map-wrapper">
+		<div id="map-google-label">
+			<div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+		</div>
+	</div>
+	
+	<div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+
+	<div id="result-wrapper">
+    	<% @courses.each do |course| %>
+    	<div id="result">
+      		<div id="result-header"><%= link_to course.name, course %></div>
+			<div id="result-marker"><img src="../assets/price-marker.png"></div>
+		    <div id="result-price"><%= course.price %></div>
+			<div id="result-marker"><img src="../assets/city-marker.png"></div>
+			<div id="result-city"><%= course.city %>, <%= course.province %>s l&auml;n</div>
+			<div id="result-category"><%= course.category %></div>
+    	</div>
+    <% end %>
+	</div>
+
+<%= link_to "Organisationer", orgs_path %>
+
+</div>
+

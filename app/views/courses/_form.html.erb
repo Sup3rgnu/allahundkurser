@@ -1,0 +1,26 @@
+<%= form_for ([@org, @org.courses.build]) do |f| %>
+	<div class="field">
+		<%= f.label :name %><br />		
+		<%= f.text_field :name %>
+	</div>
+	<div class="field">
+		<%= f.label :price %><br />		
+		<%= f.text_field :price %>
+	</div>
+	<div class="field">
+		<%= f.label :city %><br />		
+		<%= f.text_field :city %>
+	</div>
+	<div class="field">
+		<%= f.label :province %><br />		
+		<%= f.text_field :province %>
+	</div>
+	<div class="field">
+		<%= f.label :category %><br />		
+		<%= f.text_field :category %>
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

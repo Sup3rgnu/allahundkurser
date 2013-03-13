@@ -1,0 +1,28 @@
+<div id="pagewrap">
+	
+	<div id="share-wrapper">
+  	</div>
+
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="../assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1><%= @course.name %></h1>
+      Lorem ipsum kurssida, för att boka klicka här. 
+    </div>
+   </div>
+
+  <div id="result-wrapper">  
+   
+    <div id="result">
+      <div id="result-marker"><img src="../assets/price-marker.png"></div>
+      <div id="result-price"><%= @course.price %></div>
+      <div id="result-marker"><img src="../assets/city-marker.png"></div>
+      <div id="result-city"><%= @course.city %>, <%= @course.province %>s l&auml;n</div>
+      <div id="result-category"><%= @course.category %></div>
+    </div>
+   
+    </div>
+
+</div>

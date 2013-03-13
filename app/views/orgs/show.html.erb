@@ -1,0 +1,51 @@
+<div id="pagewrap">
+	
+	<div id="share-wrapper">
+  	</div>
+
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="../assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1>Visa en organisation</h1>
+     	organisationer 
+    </div>
+   </div>
+<p>
+  <b>Name:</b>
+  <%= @org.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @org.description %>
+</p>
+
+
+  <div id="result-wrapper">  
+    <% @courses.each do |course| %>
+    <div id="result">
+      <div id="result-header"><%= link_to course.name, course %></div>
+      <div id="result-marker"><img src="../assets/price-marker.png"></div>
+      <div id="result-price"><%= course.price %></div>
+      <div id="result-marker"><img src="../assets/city-marker.png"></div>
+      <div id="result-city"><%= course.city %>, <%= course.province %>s l&auml;n</div>
+      <div id="result-category"><%= course.category %></div>
+    </div>
+    <% end %>
+
+    </div>
+
+<br /><br />
+
+<%= render 'courses/form' %>
+
+<br /> <br />
+
+<%= link_to 'Edit Organisation', edit_org_path(@org) %> |
+<%= link_to 'Back to Organisations', orgs_path %>
+
+
+
+</div>

@@ -1,0 +1,30 @@
+<div id="pagewrap">
+  <div id="share-wrapper">
+
+  </div>
+
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1>Alla organisationer</h1>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    </div>
+  </div>
+
+  <div id="result-wrapper">  
+    <% @orgs.each do |org| %>
+    <div id="result">
+      <div id="result-header"><%= link_to org.name, org %></div>
+      <div id="result-header"><%= org.description %></div>  
+    </div>
+    <% end %>
+
+    
+    <div style="margin-top:100px">
+      <%= link_to 'New Org', new_org_path %>
+    </div>
+  </div>
+
+</div>
