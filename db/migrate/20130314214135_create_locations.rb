@@ -7,7 +7,5 @@ class CreateLocations < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    add_index :locations, :course_id
   end
 end
