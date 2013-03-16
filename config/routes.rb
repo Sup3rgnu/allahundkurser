@@ -1,11 +1,16 @@
 Allahundkurser::Application.routes.draw do
 
+  resources :locations
+  resources :tags
+
   resources :orgs do
     resources :courses
   end
 
-  resources :courses
-
+  resources :courses do
+    resources :coursetags
+  end 
+  
   get "home/index"
 
   # The priority is based upon order of creation:

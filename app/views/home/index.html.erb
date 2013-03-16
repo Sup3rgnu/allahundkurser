@@ -1,3 +1,11 @@
+<!-- TODO: Refactor put somewhere else -->
+<script>
+	$(document).ready(function() {
+		initialize();
+	});
+</script>
+<!-- END TODO -->
+
 <div id="pagewrap">
 	<div id="share-wrapper">
 		<span class='st_sharethis_hcount' displayText='ShareThis' style="float:right"></span>
@@ -30,13 +38,19 @@
 			<div id="result-marker"><img src="../assets/price-marker.png"></div>
 		    <div id="result-price"><%= course.price %></div>
 			<div id="result-marker"><img src="../assets/city-marker.png"></div>
-			<div id="result-city"><%= course.city %>, <%= course.province %>s l&auml;n</div>
-			<div id="result-category"><%= course.category %></div>
+			<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+			<% course.course_tags.each do |ct| %>      
+        		<div id="result-category">
+          			<%= ct.tag.name %> 
+		        </div>
+		    <% end %>
     	</div>
     <% end %>
 	</div>
 
-<%= link_to "Organisationer", orgs_path %>
+<%= link_to "Organisationer", orgs_path %> |
+<%= link_to "Locations", locations_path %> |
+<%= link_to "Tags", tags_path %>
 
 </div>
 

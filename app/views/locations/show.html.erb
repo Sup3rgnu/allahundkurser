@@ -1,0 +1,49 @@
+<!-- TODO: Refactor put somewhere else -->
+<script>
+	$(document).ready(function() {
+		var map = createMap(<%= @location.lat %>, <%= @location.lng %>);
+		putMarker(map, <%= @location.lat %>, <%= @location.lng %>, '<%= @location.name %>', "Humlegården är trevlig");
+	});
+</script>
+<!-- END TODO -->
+
+<div id="pagewrap">
+	
+	<div id="share-wrapper">
+  	</div>
+
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="../assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1>Visa en location</h1>
+    </div>
+   </div>
+<p>
+  <b>Name:</b>
+  <%= @location.name %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @location.lat %>
+</p>
+<p>
+  <b>Longitude:</b>
+  <%= @location.lng %>
+</p>
+<br /><br />
+
+	<div id="map-wrapper">
+		<div id="map-google-label">
+			<div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+		</div>
+	</div>
+	
+	<div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+
+<%= link_to 'Edit Location', edit_location_path(@location) %> |
+<%= link_to 'Back to Locations', locations_path %>
+
+</div>

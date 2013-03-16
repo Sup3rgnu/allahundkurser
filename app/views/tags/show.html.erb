@@ -1,0 +1,24 @@
+<div id="pagewrap">
+	
+	<div id="share-wrapper">
+  	</div>
+
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="../assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1>Visa en tag</h1>
+    </div>
+   </div>
+<p>
+  <b>Name:</b>
+  <%= @tag.name %>
+</p>
+
+<br /><br />
+
+<%= link_to 'Edit Tag', edit_tag_path(@tag) %> |
+<%= link_to 'Back to Tags', tags_path %>
+
+</div>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312233514) do
+ActiveRecord::Schema.define(:version => 20130316000102) do
+
+  create_table "course_tags", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -20,17 +27,35 @@ ActiveRecord::Schema.define(:version => 20130312233514) do
     t.string   "province"
     t.string   "category"
     t.integer  "org_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "location_id"
+    t.integer  "tag_id"
   end
 
+  add_index "courses", ["location_id"], :name => "index_courses_on_location_id"
   add_index "courses", ["org_id"], :name => "index_courses_on_org_id"
+  add_index "courses", ["tag_id"], :name => "index_courses_on_tag_id"
+
+  create_table "locations", :force => true do |t|
+    t.string   "name"
+    t.decimal  "lat",        :precision => 15, :scale => 10
+    t.decimal  "lng",        :precision => 15, :scale => 10
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
 
   create_table "orgs", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

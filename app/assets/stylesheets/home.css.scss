@@ -189,7 +189,7 @@ RESULT STYLE
 	color: #333;
 }
 #result-header {
-	width: 260px;
+	width: 100px;
 	
 	float: left;
 	
@@ -197,6 +197,7 @@ RESULT STYLE
 	padding: 9px 0px 0px 5px;
 }
 #result-category {
+	width: auto;
 	float: left;
 	
 	margin:10px;
@@ -225,7 +226,7 @@ RESULT STYLE
 	padding:12px 0px 0px 0px;
 }
 #result-city {
-	width: 200px;
+	width: 300px;
 	
 	float: left;
 	

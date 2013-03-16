@@ -1,6 +1,71 @@
-<h1>Editing course</h1>
+<div id="pagewrap">
+	
+	<div id="share-wrapper">
+  	</div>
 
-<%= render 'form' %>
+  <div id="header-wrapper">
+    <div id="header-logo">
+      <img src="../../assets/logo_test.png">
+    </div>
+    <div id="header-text">
+      <h1>Ändra <%= @course.name %></h1>
+    </div>
+   </div>
+<div id="result-wrapper">  
+
+<%= form_for (@course) do |f| %>
+  <% if @course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />    
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br />   
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :location_id %><br />   
+    <%= f.collection_select :location_id, @locations, :id, :name, :prompt => "Välj en plats" %><br />
+  </div>  
+  <div class="field">
+    <%= f.label :city %><br />    
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :province %><br />    
+    <%= f.text_field :province %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %><br />    
+    <% @tags.each do |t| %>      
+      <div class="category-checkbox">        
+        <%= check_box_tag "category_id[]", t.id, (@active_tags.include? t.id) %> 
+        <%= t.name %>
+      </div>
+    <% end %>
+
+      
+
+  </div>
+<div class="clear"></div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Show', @course %> |
 <%= link_to 'Back', courses_path %>
+</div>
+</div>

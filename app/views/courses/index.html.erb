@@ -8,7 +8,7 @@
       <img src="assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Alla organisationer</h1>
+      <h1>Alla Courses</h1>
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
     </div>
   </div>
@@ -18,19 +18,18 @@
 
   <% @courses.each do |course| %>
   <div id="result">
-    <div id="result-header"><%= link_to course.name, course %></div>
-    <div id="result-price"><%= course.price %> sek</div>
+    <div id="result-course-name"><%= link_to course.name, course %></div>
     <div id="result-marker"><img src="assets/price-marker.png"></div>
+    <div id="result-price"><%= course.price %> sek</div>        
     <div id="result-marker"><img src="assets/city-marker.png"></div>
-    <div id="result-header"><%= course.city course.province %>s l&auml;n</div>
-    <div id="result-category"><%= course.category %></div>
+    <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+    <% course.course_tags.each do |ct| %>      
+            <div id="result-category">
+                <%= ct.tag.name %> 
+            </div>
+        <% end %>
   </div>
   <% end %>
-
   
-  <div style="margin-top:100px">
-    <%= link_to 'New Course', new_course_path %>
-  </div>
-
   </div>
 </div>

@@ -1,15 +1,8 @@
-// Place all the styles related to the Courses controller here.
+// Place all the styles related to the Tags controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#result-course-name {
-	width: 100px;	
-	float: left;
-	margin:5px 5px 5px 0px;
-	padding: 9px 0px 0px 5px;
-}
-
-.category-checkbox {
+#result-tag-category a {
 	width: auto;
 	float: left;
 	
@@ -29,9 +22,7 @@
 	font-weight:300;
 	color: #fff;
 	text-shadow: 0px -1px #00592A;
-}
 
-.clear {
-	clear:both;
-	height: 40px;
+	font-weight: normal;
+	text-decoration: none;
 }
