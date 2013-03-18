@@ -1,3 +1,13 @@
+<script>
+  $(document).ready(function() {
+    map = createMap(getMyCoords());
+
+    $.getJSON('getCourseCoords', { id: <%= @org.id %> }, function(data) {
+      putMultipleMarkers(map, data);
+    });
+  });
+</script>
+
 <div id="pagewrap">
 	
 	<div id="share-wrapper">
@@ -8,40 +18,41 @@
       <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Visa en organisation</h1>
-     	organisationer 
+      <h1><%= @org.name %></h1>
+      <p><%= @org.description %></p>
     </div>
    </div>
-<p>
-  <b>Name:</b>
-  <%= @org.name %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @org.description %>
-</p>
-
+  <br /><br />
+  <div id="map-wrapper">
+    <div id="map-google-label">
+      <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+    </div>
+  </div>
+  
+  <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
 
   <div id="result-wrapper">  
     <% @courses.each do |course| %>
-    <div id="result">
-      <div id="result-header"><%= link_to course.name, course %></div>
-      <div id="result-marker"><img src="../assets/price-marker.png"></div>
-      <div id="result-price"><%= course.price %></div>
-      <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-city"><%= course.city %>, <%= course.province %>s l&auml;n</div>
-      <div id="result-category"><%= course.category %></div>
-    </div>
+      <div id="result">
+        <div id="result-header"><%= link_to course.name, course %></div>
+        <div id="result-marker"><img src="../assets/price-marker.png"></div>
+        <div id="result-price"><%= course.price %></div>      
+        <div id="result-marker"><img src="../assets/city-marker.png"></div>
+
+        <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+                
+        <% course.course_tags.each do |ct| %>      
+          <div id="result-category">
+            <%= ct.tag.name %> 
+          </div>
+        <% end %>
+      </div>                
     <% end %>
 
-    </div>
+  </div>
 
 <br /><br />
-
-<%= render 'courses/form' %>
-
-<br /> <br />
 
 <%= link_to 'Edit Organisation', edit_org_path(@org) %> |
 <%= link_to 'Back to Organisations', orgs_path %>

@@ -16,8 +16,8 @@
   <div id="result-wrapper">  
     <% @orgs.each do |org| %>
     <div id="result">
-      <div id="result-header"><%= link_to org.name, org %></div>
-      <div id="result-header"><%= org.description %></div>  
+      <div id="result-org-name"><%= link_to org.name, org %></div>
+      <div id="result-org-desc"><%= org.description %></div>  
     </div>
     <% end %>
 

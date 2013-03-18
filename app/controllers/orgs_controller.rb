@@ -18,7 +18,9 @@ class OrgsController < ApplicationController
   def show
     @org = Org.find(params[:id])
     @courses = @org.courses.all
-    
+    @locations = Location.all
+    @tags = Tag.all
+      
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @org }
@@ -84,4 +86,22 @@ class OrgsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def getCourseCoords
+    @org = Org.find(params[:id])
+    @courses = @org.courses.all 
+    @mapMarkers = Array.new
+
+    @courses.each do |course|
+      @marker = Array.new
+      @marker.push course
+      @marker.push Location.find(course.location_id)     
+      @mapMarkers.push @marker
+    end 
+
+      respond_to do |format|
+        format.json { render json: @mapMarkers }
+    end
+  end  
+
 end

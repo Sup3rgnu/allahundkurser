@@ -1,8 +1,13 @@
 Allahundkurser::Application.routes.draw do
 
+
+  match 'tags/getCourseCoords' => 'tags#getCourseCoords', :via => :get
+  match 'orgs/getCourseCoords' => 'orgs#getCourseCoords', :via => :get
+  match 'courses/getCourseCoords' => 'courses#getCourseCoords', :via => :get
+
   resources :locations
   resources :tags
-
+  
   resources :orgs do
     resources :courses
   end
@@ -10,7 +15,9 @@ Allahundkurser::Application.routes.draw do
   resources :courses do
     resources :coursetags
   end 
-  
+
+  match 'home/getCoords' => 'home#getCoords', :via => :get
+
   get "home/index"
 
   # The priority is based upon order of creation:

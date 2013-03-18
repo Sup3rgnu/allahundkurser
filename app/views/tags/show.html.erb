@@ -1,3 +1,12 @@
+<script>
+  $(document).ready(function() {
+    map = createMap(getMyCoords());    
+    //var data = $.parseJSON('<%= raw @mapMarkers %>');
+    //putMultipleMarkers(map, data);
+   
+  });
+</script>
+
 <div id="pagewrap">
 	
 	<div id="share-wrapper">
@@ -8,15 +17,37 @@
       <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Visa en tag</h1>
+      <h1><%= @tag.name %>kurser</h1>
     </div>
    </div>
-<p>
-  <b>Name:</b>
-  <%= @tag.name %>
-</p>
+  <br /><br />
+  <div id="map-wrapper">
+    <div id="map-google-label">
+      <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+    </div>
+  </div>
+  
+  <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+  
+  <div id="result-wrapper">  
+    <% @courses.each do |course| %>
+      <div id="result">
+        <div id="result-header"><%= link_to course.name, course %></div>
+        <div id="result-marker"><img src="../assets/price-marker.png"></div>
+        <div id="result-price"><%= course.price %></div>      
+        <div id="result-marker"><img src="../assets/city-marker.png"></div>
 
-<br /><br />
+        <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+                
+        <% course.course_tags.each do |ct| %>      
+          <div id="result-category">
+            <%= ct.tag.name %> 
+          </div>
+        <% end %>
+      </div>                
+    <% end %>
+
+    </div>
 
 <%= link_to 'Edit Tag', edit_tag_path(@tag) %> |
 <%= link_to 'Back to Tags', tags_path %>

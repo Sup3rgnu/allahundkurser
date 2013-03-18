@@ -14,22 +14,21 @@
   </div>
 
   <div id="result-wrapper">  
-
-
-  <% @courses.each do |course| %>
-  <div id="result">
-    <div id="result-course-name"><%= link_to course.name, course %></div>
-    <div id="result-marker"><img src="assets/price-marker.png"></div>
-    <div id="result-price"><%= course.price %> sek</div>        
-    <div id="result-marker"><img src="assets/city-marker.png"></div>
-    <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
-    <% course.course_tags.each do |ct| %>      
-            <div id="result-category">
-                <%= ct.tag.name %> 
-            </div>
-        <% end %>
+    <% @courses.each do |course| %>
+    <div id="result">
+      <div id="result-course-name"><%= link_to course.name, course %></div>
+      <div id="result-marker"><img src="assets/price-marker.png"></div>
+      <div id="result-price"><%= course.price %> sek</div>        
+      <div id="result-marker"><img src="assets/city-marker.png"></div>
+      <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+      <% course.course_tags.each do |ct| %>      
+              <div id="result-category">
+                  <%= ct.tag.name %> 
+              </div>
+          <% end %>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-  
-  </div>
+
+<%= link_to 'Back to Organisations', orgs_path %>
 </div>

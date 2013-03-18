@@ -16,6 +16,8 @@ class CoursesController < ApplicationController
 	def create 
 		@org = Org.find(params[:org_id])
 		@course = @org.courses.create(params[:course])
+		
+
 		redirect_to org_path(@org)
 	end
 
@@ -23,6 +25,16 @@ class CoursesController < ApplicationController
 	  	@org = Org.find(params[:org_id])
 	    @course = Course.new
 	    @locations = Location.all
+	    
+	    @tags = Tag.find(params[:category_id])
+	    
+	    # Add new tags    
+    	@tags.each do |tag|
+			@course_tag = CourseTag.new
+			@course_tag.tag_id = tag.id
+			@course_tag.course_id = @course.id
+			@course_tag.save   			
+    	end  
 
 	    respond_to do |format|
 	      format.html # new.html.erb
@@ -85,5 +97,16 @@ class CoursesController < ApplicationController
 		@course.destroy
 		redirect_to org_path(@org)
 	end
+
+	def getCourseCoords
+		@course = Course.find(params[:id])
+    	@marker = Array.new
+    	@marker.push @course
+    	@marker.push Location.find(@course.location_id)
+	    
+	    respond_to do |format|
+	    	format.json { render json: @marker }
+	    end
+	  end  
 
 end

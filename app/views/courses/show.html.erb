@@ -1,3 +1,12 @@
+<script>
+  $(document).ready(function() {
+    map = createMap(getMyCoords());
+
+    $.getJSON('getCourseCoords', { id: <%= @course.id %> }, function(data) {
+      putMarker(map, data);
+    });
+  });
+</script>
 <div id="pagewrap">
 	
 	<div id="share-wrapper">
@@ -8,21 +17,32 @@
       <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1><%= @course.name %></h1>
-      <h2><%= @course.org.name %></h2>
-      <p>Lorem ipsum kurssida, för att boka klicka här.</p> 
+      <h1><%= @course.org.name %></h1>
+      <h2><%= @course.name %></h2>
+      <p>Bacon ipsum dolor sit amet chuck shank pork loin fatback jerky tongue spare ribs sirloin, sausage pork belly flank short ribs prosciutto hamburger brisket. Beef salami hamburger boudin tri-tip tail chuck ball tip meatball pork chop turducken strip steak sirloin. Pork chop cow pancetta tongue. Meatball beef jowl pork loin. Spare ribs tail shoulder drumstick, shankle turducken cow frankfurter jowl ribeye meatloaf.</p> 
     </div>
    </div>
-
+  <br /><br />
+  <div id="map-wrapper">
+    <div id="map-google-label">
+      <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+    </div>
+  </div>
+  
+  <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
   <div id="result-wrapper">  
    
     <div id="result">
+      <div id="result-marker"><img src="../assets/city-marker.png"></div>
+      <div id="result-course-date">15 Mar - 15 Apr</div> 
+      <div id="result-marker"><img src="../assets/city-marker.png"></div>
+      <div id="result-course-times">4 Tillfällen</div>  
       <div id="result-marker"><img src="../assets/price-marker.png"></div>
       <div id="result-price"><%= @course.price %></div>      
       <div id="result-marker"><img src="../assets/city-marker.png"></div>
-
       <div id="result-city"><%= @course.location.name %>, <%= @course.province %>s l&auml;n</div>
-          
+    </div>
+    <div id="result">     
       <% @course.course_tags.each do |ct| %>      
         <div id="result-category">
           <%= ct.tag.name %> 

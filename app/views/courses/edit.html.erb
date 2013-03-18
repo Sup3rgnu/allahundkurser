@@ -48,17 +48,15 @@
   </div>
   <div class="field">
     <%= f.label :category %><br />
-    <%= f.text_field :category %><br />    
+  
     <% @tags.each do |t| %>      
       <div class="category-checkbox">        
         <%= check_box_tag "category_id[]", t.id, (@active_tags.include? t.id) %> 
         <%= t.name %>
       </div>
     <% end %>
-
-      
-
   </div>
+
 <div class="clear"></div>
   <div class="actions">
     <%= f.submit %>

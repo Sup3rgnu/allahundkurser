@@ -11,10 +11,23 @@ def index
 
   def show
     @tag = Tag.find(params[:id])
+    @courseTags = CourseTag.where("tag_id = ?", params[:id])
+    @courses = Array.new
+    @mapMarkers = Array.new
 
+    @courseTags.each do |ct|
+      @course = Course.find(ct.course_id)  
+      @courses.push @course
+
+      @marker = Array.new
+      @marker.push @course
+      @marker.push Location.find(@course.location_id)     
+      @mapMarkers.push @marker
+    end
+      
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @tag }
+      format.json { render :json => {:tag => @tag, :courses => @courses, :mapMarkers => @mapMarkers }}
     end
   end
 
@@ -39,6 +52,6 @@ def index
         format.json { render json: @tag.errors, status: :unprocessable_entity }
       end
     end
-  end  
+  end   
 
 end

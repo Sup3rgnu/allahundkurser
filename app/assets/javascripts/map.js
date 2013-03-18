@@ -1,46 +1,24 @@
-	function initialize() {
-    console.log("init");
-  	var myLat = geoip_latitude();
-		var myLng = geoip_longitude();
-    var map = createMap(myLat, myLng);
+function initialize() {
 
-    if (1 == 2) {
+  var map = createMap(getMyCoords());
 
-		$.ajax({
-			type: "POST",
-			url: "getCoordinateData.php",
-   		dataType: "json",
-   		cache: false,
-   		
-   		success: function(data) {
-      			      		
-      	var numberOfCoordinates = data.coordinate.length;      		
-      	var infowindow = new google.maps.InfoWindow(), marker, i;
-      		
-      	for(i=0;i<numberOfCoordinates;i++) {
-        	marker = new google.maps.Marker({
-        	 position: new google.maps.LatLng(data.coordinate[i].lat, data.coordinate[i].lng),
-        	 map: map
-          });
-      				
-        	google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        		return function() {
-        			var contentString = "<h3>"+data.coordinate[i].header+"</h3>"+data.coordinate[i].description;
-        			infowindow.setContent(contentString);
-          		infowindow.open(map, marker);
-        		}
-        	})(marker, i));
-      	}
-   			}
-   		});
-  }
+  $.getJSON('home/getCoords', function(data) {
+    putMultipleMarkers(map, data);
+  });
 }
 
-function createMap(lat, lng) {
+function getMyCoords() {
 
-  console.log("createMap");
+  var coords = new Array();
+  coords['lat'] = geoip_latitude();
+  coords['lng'] = geoip_longitude();
 
-  var myLatlng = new google.maps.LatLng(lat,lng);
+  return coords;
+}
+
+function createMap(coords) {
+
+  var myLatlng = new google.maps.LatLng(coords['lat'],coords['lng']);
   var mapOptions = {
     zoom: 12,
     center: myLatlng,
@@ -49,23 +27,58 @@ function createMap(lat, lng) {
     return new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 }
 
-function putMarker(map, lat, lng, header, desc){
+function putMarker(map, data){
   
-  console.log("putMarker");
-
   var infowindow = new google.maps.InfoWindow(), marker, i;
           
   marker = new google.maps.Marker({
-    position: new google.maps.LatLng(lat, lng),
+    position: new google.maps.LatLng(data[1].lat, data[1].lng),
     map: map
   });
               
   google.maps.event.addListener(marker, 'click', (function(marker, i) {
     return function() {
-      var contentString = "<h3>" + header + "</h3>" + desc;
+      var contentString = "<h3>" + data[0].name + "</h3>" + data[0].price;
       infowindow.setContent(contentString);
       infowindow.open(map, marker);
     }
   })(marker, i));
+
+}
+
+// Puts multiple markers on map, expects json data on the form [][],
+// for the second array 0 = courses (name, desc), 1 = locations (lat, lng)
+function putMultipleMarkers(map, data){
+  
+  var infowindow = new google.maps.InfoWindow(), marker, i;
+  var locations = new Array();
+
+  for (i = 0; i < data.length; i++) {
+    
+    var id = data[i][1].id;
+    var lat = data[i][1].lat;
+    var lng = data[i][1].lng;
+
+    // Offsets the marker if duplicat locations
+    if ($.inArray(id, locations) > -1){      
+      lat = (parseFloat(lat,10) + Math.random()/1000);
+      lng = (parseFloat(lng,10) + Math.random()/1000); 
+    } else {
+      locations.push(id);
+    }
+
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, lng),
+      map: map
+    });
+                
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        var contentString = "<h3>" + data[i][0].name + "</h3>" + data[i][0].price;
+        infowindow.setContent(contentString);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
 
 }
