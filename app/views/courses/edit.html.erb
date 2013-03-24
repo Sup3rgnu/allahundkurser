@@ -47,6 +47,22 @@
     <%= f.text_field :province %>
   </div>
   <div class="field">
+    <%= f.label :participants %><br />    
+    <%= f.text_field :participants %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sessions %><br />    
+    <%= f.text_field :sessions %><br />
+    <% (@course_sessions).each_with_index do |session, i| %>     
+      <%= datetime_select :session_date_start, 'start' + (i + 1).to_s , :default => session.start %><br />
+      <%= time_select :session_date_end, 'end' + (i + 1).to_s , :default => session.end %><br />
+      <% i + 1%>
+    <% end %>
+  
+  </div>
+
+  <div class="field">
     <%= f.label :category %><br />
   
     <% @tags.each do |t| %>      

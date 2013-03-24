@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start: 2013-03-23 16:28:37
+  end: 2013-03-23 16:28:37
+  course: 
+
+two:
+  start: 2013-03-23 16:28:37
+  end: 2013-03-23 16:28:37
+  course: 

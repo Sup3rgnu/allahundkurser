@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130316000102) do
+ActiveRecord::Schema.define(:version => 20130324005639) do
+
+  create_table "course_sessions", :force => true do |t|
+    t.datetime "start"
+    t.datetime "end"
+    t.integer  "course_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "course_sessions", ["course_id"], :name => "index_course_sessions_on_course_id"
 
   create_table "course_tags", :force => true do |t|
     t.integer  "course_id"
@@ -27,10 +37,12 @@ ActiveRecord::Schema.define(:version => 20130316000102) do
     t.string   "province"
     t.string   "category"
     t.integer  "org_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "location_id"
     t.integer  "tag_id"
+    t.integer  "sessions"
+    t.integer  "participants"
   end
 
   add_index "courses", ["location_id"], :name => "index_courses_on_location_id"

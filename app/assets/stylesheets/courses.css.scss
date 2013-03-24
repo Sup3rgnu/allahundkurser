@@ -2,6 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#result-courses{
+	width: 870px;
+	height:50px;
+	border-bottom: 1px solid #eee;
+ 	-moz-box-shadow: 0px 1px #fff;
+	-webkit-box-shadow: 0px 1px #fff;
+	box-shadow: 0px 1px #fff;
+	font-size:14px;
+	font-weight:bold;
+	color: #333;
+}
+
+#result-date {
+	width: 120px;	
+	float: left;
+	margin:5px 5px 5px 0px;
+	padding: 9px 0px 0px 5px;
+}
+
 #result-course-name {
 	width: 100px;	
 	float: left;
@@ -33,7 +52,6 @@
 
 .clear {
 	clear:both;
-	height: 40px;
 }
 
 #result-course-date {
@@ -43,8 +61,77 @@
 	padding: 9px 0px 0px 5px;
 }
 
+#result-legend {
+	width: 870px;
+	height:30px;
+	border-bottom: 1px solid #eee;
+ 	-moz-box-shadow: 0px 1px #fff;
+	-webkit-box-shadow: 0px 1px #fff;
+	box-shadow: 0px 1px #fff;
+	font-size:14px;
+	font-weight:300;
+	color: #333;
+}
+
+#result-legend .result-legend-date {
+	width: 80px;
+	float: left;
+	margin-left: 60px;
+}
+
+#result-legend .result-legend-sessions {
+	width: 80px;
+	float: left;
+	margin-left: 70px;
+}
+
+#result-legend .result-legend-participants {
+	width: 80px;
+	float: left;
+	margin-left: 5px;
+}
+
+#result-legend .result-legend-price {
+	width: 80px;
+	float: left;
+	margin-left: 25px;
+}
+
+#result-legend .result-legend-location {
+	width: 80px;
+	float: left;
+	margin-left: 70px;
+}
+
+#result-sessions {
+	margin-left: 60px;
+	float: left;
+}
+
 #result-course-times {
-	width: 80px;	
+	width: 20px;	
+	float: left;
+	margin:5px 5px 5px 0px;
+	padding: 9px 0px 0px 5px;
+}
+
+#result-session-date {
+	width: 60px;	
+	float: left;
+	margin:5px 5px 5px 0px;
+	padding: 9px 0px 0px 5px;
+}
+
+#result-session-header {
+	width: 100px;	
+	float: left;
+	margin:5px 5px 5px 0px;
+	padding: 9px 0px 0px 5px;
+	font-weight: bold;
+}
+
+#result-session-label {
+	width: 50px;	
 	float: left;
 	margin:5px 5px 5px 0px;
 	padding: 9px 0px 0px 5px;

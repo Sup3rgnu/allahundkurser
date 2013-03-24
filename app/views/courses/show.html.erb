@@ -32,21 +32,53 @@
   <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
   <div id="result-wrapper">  
    
-    <div id="result">
+   <div id="result-legend">
+      <div class="result-legend-date">Start - Slut</div> 
+      <div class="result-legend-sessions">Tillfällen</div>  
+      <div class="result-legend-participants">Deltagare</div>  
+      <div class="result-legend-price">Pris</div>      
+      <div class="result-legend-location">Plats</div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="result-courses">
       <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-course-date">15 Mar - 15 Apr</div> 
+      <% if @course.course_sessions.blank? %>
+        <div id="result-course-date"> - </div>
+      <% else %>
+        <div id="result-course-date"><%= @course.course_sessions.first.start.strftime("%e/%m") %> - <%= @course.course_sessions.last.start.strftime("%e/%m") %></div>
+      <% end %>
       <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-course-times">4 Tillfällen</div>  
+      <div id="result-course-times"><%= @course.sessions %></div>  
+      <div id="result-marker"><img src="../assets/city-marker.png"></div>
+      <div id="result-course-times"><%= @course.participants %></div>  
       <div id="result-marker"><img src="../assets/price-marker.png"></div>
       <div id="result-price"><%= @course.price %></div>      
       <div id="result-marker"><img src="../assets/city-marker.png"></div>
       <div id="result-city"><%= @course.location.name %>, <%= @course.province %>s l&auml;n</div>
     </div>
+     
+      <% @course.course_sessions.each_with_index do |cs, i| %>            
+        <div id="result-sessions">
+          <div id="result-session-header">Kurstillfälle <%= i+1 %></div>         
+          <div id="result-marker"><img src="../assets/city-marker.png"></div>
+          <div id="result-session-label">Datum</div>
+          <div id="result-session-date"><%= cs.start.strftime("%e %b") %></div>
+          <div id="result-marker"><img src="../assets/city-marker.png"></div>
+          <div id="result-session-label">Start</div>
+          <div id="result-session-date"><%= cs.start.strftime("%H:%M") %></div>
+          <div id="result-marker"><img src="../assets/city-marker.png"></div>
+          <div id="result-session-label">Slut</div>
+          <div id="result-session-date"><%= cs.end.strftime("%H:%M") %></div>
+        </div>        
+      <% end %>
+    
+    <div class="clear"></div>
+  
     <div id="result">     
       <% @course.course_tags.each do |ct| %>      
-        <div id="result-category">
-          <%= ct.tag.name %> 
-        </div>
+        <div id="result-category"><%= ct.tag.name %></div>
       <% end %>
   </div>
 </div>

@@ -18,7 +18,11 @@
     <div id="result">
       <div id="result-course-name"><%= link_to course.name, course %></div>
       <div id="result-marker"><img src="assets/price-marker.png"></div>
-      <div id="result-price"><%= course.price %> sek</div>        
+      <% if course.course_sessions.blank? %>
+        <div id="result-date"> - </div>
+      <% else %>
+        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+      <% end %>
       <div id="result-marker"><img src="assets/city-marker.png"></div>
       <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
       <% course.course_tags.each do |ct| %>      

@@ -13,6 +13,10 @@ Allahundkurser::Application.routes.draw do
   end
 
   resources :courses do
+    resources :coursesessions
+  end
+
+  resources :courses do
     resources :coursetags
   end 
 

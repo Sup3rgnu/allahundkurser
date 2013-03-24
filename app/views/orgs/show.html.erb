@@ -52,11 +52,14 @@
 
   </div>
 
-<br /><br />
+  <br /><hr><br /><br />
 
-<%= link_to 'Edit Organisation', edit_org_path(@org) %> |
-<%= link_to 'Back to Organisations', orgs_path %>
+  <%= render 'courses/form' %>
 
+  <br /><br />
+
+  <%= link_to 'Edit Organisation', edit_org_path(@org) %> |
+  <%= link_to 'Back to Organisations', orgs_path %>
 
 
 </div>
