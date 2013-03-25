@@ -27,7 +27,7 @@ def index
       
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => {:tag => @tag, :courses => @courses, :mapMarkers => @mapMarkers }}
+      format.json { render :json => {:tag => @tag, :courses => @courses }}
     end
   end
 
@@ -53,5 +53,24 @@ def index
       end
     end
   end   
+  
+  def getCourseCoords
+    @tag = Tag.find(params[:id])
+    @courseTags = CourseTag.where("tag_id = ?", params[:id])
+    @courses = Array.new
+    @mapMarkers = Array.new
+
+    @courseTags.each do |ct|
+      @course = Course.find(ct.course_id)  
+      @marker = Array.new
+      @marker.push @course
+      @marker.push Location.find(@course.location_id)     
+      @mapMarkers.push @marker
+    end
+
+      respond_to do |format|
+        format.json { render json: @mapMarkers }
+    end
+  end  
 
 end

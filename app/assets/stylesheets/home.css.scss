@@ -84,13 +84,6 @@ SEARCH STYLE
 	padding: 3px 0px 0px 3px;
 	margin: 0 auto;
 }
-#search-img {
-	width: 30px;
-	
-	float:left;
-	
-	padding: 15px 0px 0px 12px;
-}
 .searchbox {
 	width:800px;
 	height:30px;
@@ -104,9 +97,17 @@ SEARCH STYLE
 	background:#444444 url(search-form-bg.png) repeat-x;
 	
 	font-size:20px;
-	color: #fff;
+	color: #999;
 }
-
+.searchbutton {
+	width: 40px;
+	height: 40px;
+	float:left;
+	margin: 15px 0 0 12px;
+	background: url(/assets/search-symbol.png) no-repeat;
+	cursor: pointer;
+	border: none;
+}
 /************************************************************************************
 HEADER STYLE
 *************************************************************************************/
@@ -217,6 +218,13 @@ RESULT STYLE
 	color: #fff;
 	text-shadow: 0px -1px #00592A;
 }
+
+#result-category a {
+	color: #fff;
+	text-shadow: 0px -1px #00592A;
+	text-decoration: none;
+}
+
 #result-marker {
 	width: 20px;
 	

@@ -6,5 +6,14 @@ class Course < ActiveRecord::Base
   has_many :tags, :through => :course_tags
   attr_accessible :name, :price, :city, :province, :category, :location_id, :sessions, :participants
   validates :name, :presence => true
+
+  def self.search(search)
+  	if search
+  		str = "%#{search.downcase}%"
+      where('LOWER (name) LIKE ? OR LOWER (city) LIKE ? OR LOWER (province) LIKE ?', str, str, str)
+    else 
+  		scoped
+  	end
+  end
 end
 

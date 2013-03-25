@@ -5,7 +5,21 @@ class CoursesController < ApplicationController
 	# GET /orgs
 	# GET /orgs.json
   	def index
-    	@courses = Course.all
+
+    	@courses = Course.search(params[:search])
+    	
+    	if (params.has_key?(:search))
+    		@tag = Tag.search(params[:search])
+
+    		if @tag.exists?
+	    		@ct = CourseTag.where('tag_id = ? ', @tag.first.id)
+
+	    		@ct.each do |c|
+	    			@courses.push Course.find(c.course_id)
+	    		end
+    		end
+
+    	end
 
 	    respond_to do |format|
 	      format.html # index.html.erb

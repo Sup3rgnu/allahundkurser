@@ -1,11 +1,14 @@
+<!-- TODO: Refactor put somewhere else -->
 <script>
   $(document).ready(function() {
-    map = createMap(getMyCoords());    
-    //var data = $.parseJSON('<%= raw @mapMarkers %>');
-    //putMultipleMarkers(map, data);
-   
+    map = createMap(getMyCoords());
+
+    $.getJSON('getCourseCoords', { id: <%= @tag.id %> }, function(data) {
+      putMultipleMarkers(map, data);
+    });
   });
 </script>
+<!-- END TODO -->
 
 <div id="pagewrap">
 	
@@ -40,9 +43,7 @@
         <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
                 
         <% course.course_tags.each do |ct| %>      
-          <div id="result-category">
-            <%= ct.tag.name %> 
-          </div>
+          <div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
         <% end %>
       </div>                
     <% end %>

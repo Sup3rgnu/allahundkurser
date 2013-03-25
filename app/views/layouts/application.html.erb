@@ -20,12 +20,12 @@
 <div id="topline"></div>
 <div id="topbar-wrapper">
 	<div id="search-wrapper">
-		<div id="search-img">
-			<img src="/assets/search-symbol.png">
-		</div>
-		<form action="search.php" method="GET">
-			<input type="text" class="searchbox" onfocus="this.placeholder = ''" placeholder="S&ouml;k p&aring; stad, landskap eller kurstyp" name="query" />
-		<imput type="submit" value="Search" /></form>
+    <form action="<%= courses_path %>" method="get">
+      <p>
+        <%= text_field_tag :search, params[:search], :value => 'Sök på stad, landskap, kurstyp eller namn', :class => 'searchbox', :onfocus =>"value = ''" %>
+        <%= submit_tag '', :name => nil, :class => 'searchbutton' %>
+      </p>
+    </form>
 	</div>
 </div>
 

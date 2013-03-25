@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-	@courses = Course.all
+	@courses = Course.search(params[:search])
     respond_to do |format|
     	format.html # show.html.erb
 		format.json { render json: @courses }

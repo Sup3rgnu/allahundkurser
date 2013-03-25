@@ -26,9 +26,7 @@
       <div id="result-marker"><img src="assets/city-marker.png"></div>
       <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
       <% course.course_tags.each do |ct| %>      
-              <div id="result-category">
-                  <%= ct.tag.name %> 
-              </div>
+              <div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
           <% end %>
     </div>
     <% end %>
