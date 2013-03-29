@@ -20,7 +20,8 @@ class OrgsController < ApplicationController
     @courses = @org.courses.all
     @locations = Location.all
     @tags = Tag.all
-      
+    @provinces = Course.provinces
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @org }
@@ -103,5 +104,4 @@ class OrgsController < ApplicationController
         format.json { render json: @mapMarkers }
     end
   end  
-
 end

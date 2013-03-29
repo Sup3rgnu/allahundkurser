@@ -1,5 +1,29 @@
+  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", "courses" %>
+  <%= stylesheet_link_tag "jquery-ui-timepicker-addon.css", "courses" %>
+  <%= javascript_include_tag "jquery-ui-timepicker-addon.js", "courses" %>
+
+<script>
+$(function() {
+  $('.calendar').datetimepicker({
+    dateFormat: 'yy-dd-mm',
+    timeFormat: 'HH:mm',
+    hourMin: 7,
+    hourMax: 22,
+    stepMinute: 15
+  });
+  
+  $('.calendar-time').timepicker({
+    timeFormat: 'HH:mm',
+    hourMin: 7,
+    hourMax: 22,    
+    stepMinute: 15
+
+  });
+
+});
+</script>
+
 <div id="pagewrap">
-	
 	<div id="share-wrapper">
   	</div>
 
@@ -27,36 +51,44 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />    
+    <%= f.label :name, 'Name' %><br />    
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />   
+    <%= f.label :price, 'Pris' %><br />   
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.label :location_id %><br />   
+    <%= f.label :location_id, 'Plats' %><br />   
     <%= f.collection_select :location_id, @locations, :id, :name, :prompt => "Välj en plats" %><br />
   </div>  
   <div class="field">
-    <%= f.label :city %><br />    
+    <%= f.label :city, 'Stad' %><br />    
     <%= f.text_field :city %>
   </div>
   <div class="field">
-    <%= f.label :province %><br />    
-    <%= f.text_field :province %>
+    <%= f.label :province, 'Län' %><br />    
+    <%= f.select :province, @provinces, :prompt => "Välj ett län" %><br />
   </div>
   <div class="field">
-    <%= f.label :participants %><br />    
+    <%= f.label :participants, 'Antal deltagare' %><br />    
     <%= f.text_field :participants %>
   </div>
-
   <div class="field">
-    <%= f.label :sessions %><br />    
-    <%= f.text_field :sessions %><br />
-    <% (@course_sessions).each_with_index do |session, i| %>     
-      <%= datetime_select :session_date_start, 'start' + (i + 1).to_s , :default => session.start %><br />
-      <%= time_select :session_date_end, 'end' + (i + 1).to_s , :default => session.end %><br />
+    <%= f.label :desc, 'Beskriving av kursen' %><br />    
+    <%= f.text_area :desc %>
+  </div>
+  <div class="field">
+    <%= f.label :sessions, 'Antal tillfällen' %><br />    
+    <%= f.select :sessions, (1..9) %><br />
+  </div>
+  <div class="field">
+    <% (@course_sessions).each_with_index do |session, i| %>
+      <span>Kurstillfälle <%= i+1 %> Datum/Starttid</span>
+      <%= text_field :session_date_start, 'start' + (i + 1).to_s , :class => 'calendar', :value => (session.start) ? session.start.strftime("%Y-%d-%m %H:%M") : '' %>
+      <span>Sluttid</span>
+      <%= text_field :session_date_end, 'end' + (i + 1).to_s , :class => 'calendar-time', :value => (session.end) ? session.end.strftime("%H:%M") : '' %>
+      <br />
       <% i + 1%>
     <% end %>
   

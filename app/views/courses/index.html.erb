@@ -21,7 +21,7 @@
       <% if course.course_sessions.blank? %>
         <div id="result-date"> - </div>
       <% else %>
-        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+        <div id="result-date"><%= (course.course_sessions.first.start) ? course.course_sessions.first.start.strftime("%e/%m") : '-' %> - <%= (course.course_sessions.last.start) ? course.course_sessions.last.start.strftime("%e/%m") : '-' %></div>
       <% end %>
       <div id="result-marker"><img src="assets/city-marker.png"></div>
       <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>

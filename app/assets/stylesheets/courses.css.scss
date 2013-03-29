@@ -12,6 +12,7 @@
 	font-size:14px;
 	font-weight:bold;
 	color: #333;
+	margin-bottom: 30px;
 }
 
 #result-date {
@@ -26,6 +27,35 @@
 	float: left;
 	margin:5px 5px 5px 0px;
 	padding: 9px 0px 0px 5px;
+}
+
+#result-category-header {
+	width: auto;
+	float: right;
+	
+	margin:10px;
+	padding: 3px 10px 3px 10px;
+	
+	border: 1px solid #009E4B;
+	background: #00B158;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 0px 1px #999;
+	-webkit-box-shadow: 0px 1px #999;
+	box-shadow: 0px 1px #999;
+	
+	text-align:center;
+	letter-spacing: 1px;
+	font-weight:300;
+	color: #fff;
+	text-shadow: 0px -1px #00592A;
+
+}
+
+#result-category-header a{
+	color: #fff;
+	text-shadow: 0px -1px #00592A;
+	text-decoration: none;
 }
 
 .category-checkbox {

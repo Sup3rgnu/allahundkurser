@@ -38,14 +38,7 @@ class CoursesController < ApplicationController
 		end	
 
 		@tags = Tag.find(params[:course_category])
-	    
-	    # Add new tags    
-    	@tags.each do |tag|
-			@course_tag = CourseTag.new
-			@course_tag.tag_id = tag.id
-			@course_tag.course_id = @course.id
-			@course_tag.save   			
-    	end
+	    addTags(@tags)	    
 
 		redirect_to org_path(@org)
 	end
@@ -54,17 +47,19 @@ class CoursesController < ApplicationController
 	  	@org = Org.find(params[:id])
 	    @course = Course.new
 	    @locations = Location.all
-	    	      
+
 	    respond_to do |format|
 	      format.html # new.html.erb
-	      format.json { render :json => { :org => @org, :locations => @locations }}
+	      format.json { render :json => { :org => @org, :locations => @locations, :provinces => @provinces }}
 	    end
 	end
   	
   	def edit
     	@course = Course.find(params[:id])
     	@locations = Location.all
+    	@provinces = Course.provinces
     	@tags = Tag.all
+
     	# Get the associated course sessions
     	@course_sessions = CourseSession.where("course_id = ?", params[:id])
     	# Get the tags that are currently selected
@@ -75,6 +70,7 @@ class CoursesController < ApplicationController
   	def update
     	@course = Course.find(params[:id])    	
 
+    	# Remove old sessions and create new 
 		@course_sessions = CourseSession.where("course_id = ?", params[:id])
 		@course_sessions.each do |cs|
 			cs.destroy
@@ -85,13 +81,22 @@ class CoursesController < ApplicationController
 		sessions_end = params[:session_date_end]
 
 
-		(1..count.to_i).each do |s|
+		#(1..count.to_i).each do |s|
+		sessions_start.each.with_index do |s, i|
 			@session = CourseSession.new
 			@session.course_id = params[:id]
-			
+					
 			if sessions_start && sessions_end
-				@session.start = create_date(flatten_date_array(sessions_start, s, 'start'))
-				@session.end = create_date(flatten_date_array(sessions_end, s, 'end'))
+				key = 'end'+ (i+1).to_s
+				startdate = sessions_start[s.first]
+				enddate = sessions_end[key] 
+				
+				dt = DateTime.strptime(startdate, '%Y-%d-%m %H:%M')
+				dt_end = Time.strptime(enddate, '%H:%M')
+
+				@session.start = dt
+				@session.end = DateTime.new(dt.year, dt.month, dt.day, dt_end.hour, dt_end.min)
+			
 			else
 				@session.start = DateTime.now + 30
 				@session.end = DateTime.now + 30
@@ -99,22 +104,16 @@ class CoursesController < ApplicationController
 			@session.save
 		end	
 
+		# Remove old tags and create new
 		@course_tags = CourseTag.where("course_id = ?", params[:id])
-		# Remove old tags
+		
 		@course_tags.each do |ct| 
 			ct.destroy
 		end
 
 		if (params.has_key?(:category_id))
     		@tags = Tag.find(params[:category_id])
-    	
-			# Add new tags    
-	    	@tags.each do |tag|
-				@course_tag = CourseTag.new
-				@course_tag.tag_id = tag.id
-				@course_tag.course_id = @course.id
-				@course_tag.save   			
-	    	end   
+			addTags(@tags)   
     	end  	
 
     	respond_to do |format|
@@ -128,13 +127,15 @@ class CoursesController < ApplicationController
     	end
   	end
 
-  	def flatten_date_array(hash, n, type)
-  		%w(1 2 3 4 5).map { |e| hash["#{type}#{n}(#{e}i)"].to_i }
-	end
-
-	def create_date(values)
-		DateTime.new values[0], values[1], values[2], values[3], values[4]
-	end
+  	def addTags(tags)
+  		# Add new tags    
+	    tags.each do |tag|
+			@course_tag = CourseTag.new
+			@course_tag.tag_id = tag.id
+			@course_tag.course_id = @course.id
+			@course_tag.save   			
+	    end     		
+  	end
 
 	def show
 	    @course = Course.find(params[:id])	    
@@ -162,6 +163,6 @@ class CoursesController < ApplicationController
 	    respond_to do |format|
 	    	format.json { render json: @marker }
 	    end
-	  end  
+	end
 
 end
