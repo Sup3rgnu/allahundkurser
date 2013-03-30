@@ -8,14 +8,14 @@
       <img src="assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Alla organisationer</h1>
+      <h1>Alla Organisationer</h1>
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
     </div>
   </div>
 
   <div id="result-wrapper">  
-    <% @orgs.each do |org| %>
-    <div id="result">
+    <% @orgs.each.with_index do |org, i| %>
+    <div id="result" <%= i%2 == 0 ? '' : 'class=stripped' %> >
       <div id="result-org-name"><%= link_to org.name, org %></div>
       <div id="result-org-desc"><%= org.description %></div>  
     </div>
@@ -23,7 +23,7 @@
 
     
     <div style="margin-top:100px">
-      <%= link_to 'New Org', new_org_path %>
+      <%= link_to 'New Org', new_org_path, :class => 'btn' %>
     </div>
   </div>
 

@@ -1,0 +1,16 @@
+<div class="nav-links">
+  <%= link_to "Allahundkurser", root_path, :class => 'brand' %>
+  <%= link_to "Admin", courses_path, :class => 'sub_nav' %>
+  <%= link_to "Organisationer", orgs_path, :class => 'sub_nav' %>
+  <%= link_to "Kurser", courses_path, :class => 'sub_nav' %>
+
+</div>
+<div id="search-wrapper">
+  <form action="<%= courses_path %>" method="get" class="form-search">
+      <div class="input-prepend">
+        <%= submit_tag '', :name => 'Sök', :value => 'Sök', :class => 'btn btn-success' %>
+        <%= text_field_tag :search, params[:search], :value => 'Sök på stad, landskap, kurstyp eller namn', :class => 'input-xlarge search-query', :onfocus =>"value = ''" %>      
+      </div>
+  </form>
+</div>
+

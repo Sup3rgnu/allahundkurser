@@ -50,68 +50,82 @@ $(function() {
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, 'Name' %><br />    
+  <div class="field span3">
+    <%= f.label :name, 'Name' %>   
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :price, 'Pris' %><br />   
-    <%= f.text_field :price %>
+  <div class="field span4">
+    <%= f.label :location_id, 'Plats' %>  
+    <%= f.collection_select :location_id, @locations, :id, :name, :prompt => "Välj en plats" %>
   </div>
-  <div class="field">
-    <%= f.label :location_id, 'Plats' %><br />   
-    <%= f.collection_select :location_id, @locations, :id, :name, :prompt => "Välj en plats" %><br />
-  </div>  
-  <div class="field">
-    <%= f.label :city, 'Stad' %><br />    
+  <div class="field span3">
+    <%= f.label :price, 'Pris' %>   
+    <%= f.text_field :price, :class => 'span1' %>
+  </div>    
+  <div class="field span4">
+    <%= f.label :city, 'Stad' %>  
     <%= f.text_field :city %>
   </div>
-  <div class="field">
-    <%= f.label :province, 'Län' %><br />    
-    <%= f.select :province, @provinces, :prompt => "Välj ett län" %><br />
+  <div class="field span3">
+    <%= f.label :participants, 'Antal deltagare' %>   
+    <%= f.select :participants, (1..19), {}, {:class => 'span1'} %>
   </div>
-  <div class="field">
-    <%= f.label :participants, 'Antal deltagare' %><br />    
-    <%= f.text_field :participants %>
+  <div class="field span4">
+    <%= f.label :province, 'Län' %>    
+    <%= f.select :province, @provinces, :prompt => "Välj ett län" %>
   </div>
-  <div class="field">
-    <%= f.label :desc, 'Beskriving av kursen' %><br />    
-    <%= f.text_area :desc %>
-  </div>
-  <div class="field">
-    <%= f.label :sessions, 'Antal tillfällen' %><br />    
-    <%= f.select :sessions, (1..9) %><br />
-  </div>
-  <div class="field">
-    <% (@course_sessions).each_with_index do |session, i| %>
-      <span>Kurstillfälle <%= i+1 %> Datum/Starttid</span>
-      <%= text_field :session_date_start, 'start' + (i + 1).to_s , :class => 'calendar', :value => (session.start) ? session.start.strftime("%Y-%d-%m %H:%M") : '' %>
-      <span>Sluttid</span>
-      <%= text_field :session_date_end, 'end' + (i + 1).to_s , :class => 'calendar-time', :value => (session.end) ? session.end.strftime("%H:%M") : '' %>
-      <br />
-      <% i + 1%>
-    <% end %>
-  
+  <div class="field span8">
+    <%= f.label :desc, 'Beskriving av kursen' %> 
+    <%= f.text_area :desc, :class =>'span5', :rows => 10 %>
   </div>
 
-  <div class="field">
-    <%= f.label :category %><br />
+  <div class="spacer-small span8"></div>
+  
+  <div class="field span8">
+    <%= f.label :sessions, 'Antal tillfällen' %>   
+    <%= f.select :sessions, (1..9), {}, {:class => 'span1'} %>
+  </div>
+
+  <div class="spacer-small span8"></div>
+
+  <div class="field span8">
+    <% (@course_sessions).each_with_index do |session, i| %>
+      <%= f.label 'Kurstillfälle' + (i+1).to_s, :class => 'span2' %>
+      <%= f.label 'Sluttid', :class => 'span5' %>
+      
+      <div class="span2">
+        <%= text_field :session_date_start, 'start' + (i + 1).to_s , :class => 'calendar span2', :value => (session.start) ? session.start.strftime("%Y-%d-%m %H:%M") : '' %>
+      </div>
+
+      <div class="span1">
+      <%= text_field :session_date_end, 'end' + (i + 1).to_s , :class => 'calendar-time span1', :value => (session.end) ? session.end.strftime("%H:%M") : '' %>
+      </div>
+      
+      <% i + 1%>
+    <% end %>
+  </div>
+
+  <div class="spacer span8"></div>
+
+  <div class="field span8">
+    <%= f.label :category, 'Taggar/Kategorier' %>
   
     <% @tags.each do |t| %>      
-      <div class="category-checkbox">        
+      <div class="btn btn-success">        
         <%= check_box_tag "category_id[]", t.id, (@active_tags.include? t.id) %> 
         <%= t.name %>
       </div>
     <% end %>
   </div>
 
+  <div class="spacer-large span8"></div>
+
 <div class="clear"></div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions span8">
+    <%= f.submit :value => 'Uppdatera', :class => 'btn btn-primary' %>
+    <%= link_to 'Tillbaka', courses_path, :class => 'btn' %>
   </div>
 <% end %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
 </div>
 </div>

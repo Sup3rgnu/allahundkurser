@@ -23,17 +23,21 @@
 		</div>
 	</div>
 
-	<div id="map-wrapper">
+	<div class="spacer span8"></div> 
+	
+	<div id="map-wrapper span8">
 		<div id="map-google-label">
 			<div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
 		</div>
 	</div>
 	
-	<div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+	<div id="map-geoLite" class="span6" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+
+	<div class="spacer span8"></div>
 
 	<div id="result-wrapper">
-    	<% @courses.each do |course| %>
-    	<div id="result">
+    	<% @courses.each.with_index do |course, i| %>
+    	<div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
       		<div id="result-header"><%= link_to course.name, course %></div>
 			<div id="result-marker"><img src="../assets/price-marker.png"></div>
 		    <% if course.course_sessions.blank? %>
@@ -44,16 +48,13 @@
 			<div id="result-marker"><img src="../assets/city-marker.png"></div>
 			<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
 			<% course.course_tags.each do |ct| %>      
-        		<div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
+        		<div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
 		    <% end %>
     	</div>
     <% end %>
 	</div>
 
-<%= link_to "Organisationer", orgs_path %> |
-<%= link_to "Courses", courses_path %> |
-<%= link_to "Locations", locations_path %> |
-<%= link_to "Tags", tags_path %>
+<div class="spacer-large span8"></div> 
 
 </div>
 

@@ -34,10 +34,12 @@ class CoursesController < ApplicationController
 		(1..params[:sessions].to_i).each do |s|
 			@course_session = CourseSession.new
 			@course_session.course_id = @course.id
+			@course_session.start = DateTime.now
+			@course_session.end = DateTime.now			
 			@course_session.save
 		end	
 
-		@tags = Tag.find(params[:course_category])
+		@tags = Tag.find(params[:category_id])
 	    addTags(@tags)	    
 
 		redirect_to org_path(@org)

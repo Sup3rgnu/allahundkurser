@@ -1,41 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>Allahundkurser</title>
-  <%= stylesheet_link_tag  "application", :media => "all" %>
-  <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Ubuntu:300,500,300italic", "application" %>
-
-  <link rel="shortcut icon" href="favicon.png" />
-  
-
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-
-
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr31V9bZKa2TSUVPiNPJEINT3LFRAkuxY&sensor=false"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Allahundkurser" %></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Ubuntu:300,500,300italic", "application" %>
+    <%= javascript_include_tag "application" %>
+      <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr31V9bZKa2TSUVPiNPJEINT3LFRAkuxY&sensor=false"></script>
   <script src="http://j.maxmind.com/app/geoip.js"></script>
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
   <script type="text/javascript">stLight.options({publisher: "ur-1eb36199-4464-7571-f771-d8f46574b177"});</script> 
+    <%= csrf_meta_tags %>
+    <link rel="shortcut icon" href="favicon.png" />
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
 
-</head>
-
-<body>
-<div id="topline"></div>
-<div id="topbar-wrapper">
-	<div id="search-wrapper">
-    <form action="<%= courses_path %>" method="get">
-      <p>
-        <%= text_field_tag :search, params[:search], :value => 'Sök på stad, landskap, kurstyp eller namn', :class => 'searchbox', :onfocus =>"value = ''" %>
-        <%= submit_tag '', :name => nil, :class => 'searchbutton' %>
-      </p>
-    </form>
-	</div>
-</div>
-
-<%= yield %>
-
-<div id="footer-wrapper"></div>
-
-</body>
+      </nav>
+    </header>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
 </html>
+

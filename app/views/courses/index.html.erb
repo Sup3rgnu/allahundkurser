@@ -8,14 +8,14 @@
       <img src="assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Alla Courses</h1>
+      <h1>Alla Kurser</h1>
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
     </div>
   </div>
 
   <div id="result-wrapper">  
-    <% @courses.each do |course| %>
-    <div id="result">
+    <% @courses.each.with_index do |course, i| %>
+    <div id="result" <%= (i%2 == 0) ? '' : 'class=stripped' %>>
       <div id="result-course-name"><%= link_to course.name, course %></div>
       <div id="result-marker"><img src="assets/price-marker.png"></div>
       <% if course.course_sessions.blank? %>
@@ -25,12 +25,14 @@
       <% end %>
       <div id="result-marker"><img src="assets/city-marker.png"></div>
       <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+
       <% course.course_tags.each do |ct| %>      
-              <div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
-          <% end %>
+              <div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
+      <% end %>
+
     </div>
     <% end %>
   </div>
 
-<%= link_to 'Back to Organisations', orgs_path %>
+<%= link_to 'Back to Organisations', orgs_path, :class => 'btn' %>
 </div>

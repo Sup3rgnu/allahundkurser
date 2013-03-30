@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-	@courses = Course.search(params[:search])
+	@courses = Course.find(:all, :order => "id desc", :limit => 10) 
     respond_to do |format|
     	format.html # show.html.erb
 		format.json { render json: @courses }
@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   end
 
   def getCoords
-	@courses = Course.all 
+	@courses = Course.find(:all, :order => "id desc", :limit => 10) 
 	@mapObjects = Array.new
 
 	@courses.each do |course|
