@@ -18,81 +18,97 @@
     </div>
     <div id="header-text">
       <% @course.course_tags.each do |ct| %>      
-        <div id="result-category-header"><%= link_to ct.tag.name, ct.tag %></div>
+        <div id="result-category-header" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
       <% end %>
       <h1><%= @course.name %> kurs</h1>
-      <h2><%= @course.org.name %></h2>
-      <%= link_to 'Hemsida', @course.org.url %>
-      <p>Bacon ipsum dolor sit amet chuck shank pork loin fatback jerky tongue spare ribs sirloin, sausage pork belly flank short ribs prosciutto hamburger brisket. Beef salami hamburger boudin tri-tip tail chuck ball tip meatball pork chop turducken strip steak sirloin. Pork chop cow pancetta tongue. Meatball beef jowl pork loin. Spare ribs tail shoulder drumstick, shankle turducken cow frankfurter jowl ribeye meatloaf.</p> 
+      <span class="brand"><%= link_to @course.org.name, org_path(@course.org) %></span>
+      <br />
+      <span>Bacon ipsum dolor sit amet chuck shank pork loin fatback jerky tongue spare ribs sirloin, sausage pork belly flank short ribs prosciutto hamburger brisket. Beef salami hamburger boudin tri-tip tail chuck ball tip meatball pork chop turducken strip steak sirloin. Pork chop cow pancetta tongue. Meatball beef jowl pork loin. Spare ribs tail shoulder drumstick, shankle turducken cow frankfurter jowl ribeye meatloaf.</span> 
+      <span class="brand">Besök organisationens <%= link_to 'hemsida', @course.org.url %></span>
     </div>
    </div>
-  <br /><br />
-  <div id="map-wrapper">
+
+  <div class="spacer span8"></div> 
+  
+  <div id="map-wrapper span8">
     <div id="map-google-label">
       <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
     </div>
   </div>
   
   <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
-  <div id="result-wrapper">  
-   
-   <div id="result-legend">
-    <i>
-      <div class="result-legend-date">Start - Slut</div> 
-      <div class="result-legend-sessions">Tillfällen</div>  
-      <div class="result-legend-participants">Deltagare</div>  
-      <div class="result-legend-price">Pris</div>      
-      <div class="result-legend-location">Plats</div>
-    </i>
-    </div>
 
-    <div class="clear"></div>
+  <div class="spacer span8"></div>
+
+  <div id="result-wrapper">  
+
+   <div id="result-legend">
+      <div class="span2">Start - Slut</div>
+      <div class="span1">Tillfällen</div>
+      <div class="span1">Deltagare</div>
+      <div class="span1">Pris</div>
+      <div class="span3">Plats</div>
+    </div>
 
     <div id="result-courses">
-      <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <% if @course.course_sessions.blank? %>
-        <div id="result-course-date"> - </div>
-      <% else %>
-        <div id="result-course-date"><%= (@course.course_sessions.first.start) ? @course.course_sessions.first.start.strftime("%e/%m") : '-' %> - <%= (@course.course_sessions.last.start) ? @course.course_sessions.last.start.strftime("%e/%m") : '-' %></div>
-      <% end %>
-      <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-course-times"><%= @course.sessions %></div>  
-      <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-course-times"><%= @course.participants %></div>  
-      <div id="result-marker"><img src="../assets/price-marker.png"></div>
-      <div id="result-price"><%= @course.price %></div>      
-      <div id="result-marker"><img src="../assets/city-marker.png"></div>
-      <div id="result-city"><%= @course.location.name %>, <%= @course.province %>s l&auml;n</div>
+      <div class="span2">
+        <img src="../assets/city-marker.png">
+        <% if @course.course_sessions.blank? %>
+          -
+        <% else %>
+          <%= (@course.course_sessions.first.start) ? @course.course_sessions.first.start.strftime("%e/%m") : '-' %> - <%= (@course.course_sessions.last.start) ? @course.course_sessions.last.start.strftime("%e/%m") : '-' %>
+        <% end %>
+      </div>
+
+      <div class="span1"><img src="../assets/city-marker.png"><%= @course.sessions %></div>  
+
+      <div class="span1"><img src="../assets/city-marker.png"><%= @course.participants %></div>  
+
+      <div class="span1"><img src="../assets/price-marker.png"><%= @course.price %></div>
+
+      <div class="span3"><img src="../assets/city-marker.png"><%= @course.location.name %>, <%= @course.province %>s l&auml;n</div>
     </div>
-     
+    
+    <div class="spacer-small span8"></div>
+
       <% @course.course_sessions.each_with_index do |cs, i| %>            
-        <div id="result-sessions">
-          <div id="result-session-header">Kurstillfälle <%= i+1 %></div>         
-          <div id="result-marker"><img src="../assets/city-marker.png"></div>
-          <div id="result-session-label">Datum</div>
-          <div id="result-session-date"><%= (cs.start) ? cs.start.strftime("%e %b") : '-' %></div>
-          <div id="result-marker"><img src="../assets/city-marker.png"></div>
-          <div id="result-session-label">Start</div>
-          <div id="result-session-date"><%= (cs.start) ? cs.start.strftime("%H:%M") : '-' %></div>
-          <div id="result-marker"><img src="../assets/city-marker.png"></div>
-          <div id="result-session-label">Slut</div>
-          <div id="result-session-date"><%= (cs.end) ? cs.end.strftime("%H:%M") : '-' %></div>
+        <div id="result-sessions" class='<%= (i%2 == 0) ? "" : "stripped" %>'>
+
+          <div class="span2">
+            <span class="span-legend">Kurstillfälle</span>
+            <span class="span-result"><%= i+1 %></span>
+          </div>
+
+          <div class="span2">
+            <span class="span-legend">Datum</span> 
+            <span class="span-result"><%= (cs.start) ? cs.start.strftime("%e %b") : '-' %></span>
+          </div>
+
+          <div class="span2">
+            <span class="span-legend">Start</span> 
+            <span class="span-result"><%= (cs.start) ? cs.start.strftime("%H:%M") : '-' %></span>
+          </div>
+
+          <div class="span2">
+            <span class="span-legend">Slut</span>
+            <span class="span-result"><%= (cs.end) ? cs.end.strftime("%H:%M") : '-' %></span>
+          </div>
+
         </div>        
       <% end %>
     
     <div class="clear"></div>
-  
-    <!-- Put them on top instead
-    <div id="result">     
-      <% @course.course_tags.each do |ct| %>      
-        <div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
-      <% end %>
-  </div>
-    -->
+
 
 </div>
 
-<%= link_to 'Edit Course', edit_course_path(@course) %> |
-<%= link_to 'Back to Courses', courses_path %>
+<div class="spacer span8"></div> 
+
+<%= link_to 'Boka kursen', edit_course_path(@course), :class => 'btn btn-primary' %>
+<%= link_to 'Uppdatera kursen', edit_course_path(@course), :class => 'btn btn-info' %>
+<%= link_to 'Tillbaka', courses_path, :class => 'btn' %>
+<div class="spacer-small span8"></div> 
+
+<div class="spacer-large span8"></div> 
 
 </div>

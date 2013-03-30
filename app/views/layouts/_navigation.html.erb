@@ -8,8 +8,11 @@
 <div id="search-wrapper">
   <form action="<%= courses_path %>" method="get" class="form-search">
       <div class="input-prepend">
-        <%= submit_tag '', :name => 'Sök', :value => 'Sök', :class => 'btn btn-success' %>
-        <%= text_field_tag :search, params[:search], :value => 'Sök på stad, landskap, kurstyp eller namn', :class => 'input-xlarge search-query', :onfocus =>"value = ''" %>      
+
+        <%= submit_tag '', :name => '', :value => 'Sök', :class => 'btn btn-success' %>
+        class="search-query" placeholder="Search"
+        <%= text_field_tag :search, params[:search], :placeholder => 'Sök på stad, landskap, kurstyp eller namn', :class => 'input-xlarge search-query' %>      
+
       </div>
   </form>
 </div>

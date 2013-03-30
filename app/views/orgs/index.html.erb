@@ -13,18 +13,18 @@
     </div>
   </div>
 
+  <div class="spacer span8"></div> 
+
   <div id="result-wrapper">  
     <% @orgs.each.with_index do |org, i| %>
-    <div id="result" <%= i%2 == 0 ? '' : 'class=stripped' %> >
+    <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
       <div id="result-org-name"><%= link_to org.name, org %></div>
       <div id="result-org-desc"><%= org.description %></div>  
     </div>
     <% end %>
-
-    
-    <div style="margin-top:100px">
-      <%= link_to 'New Org', new_org_path, :class => 'btn' %>
-    </div>
   </div>
 
+<div class="spacer span8"></div> 
+<div class="span8"><%= link_to 'Skapa en organisation', new_org_path, :class => 'btn' %></div>
+<div class="spacer-large span8"></div> 
 </div>

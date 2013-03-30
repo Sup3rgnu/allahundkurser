@@ -33,8 +33,12 @@ $(function() {
     </div>
     <div id="header-text">
       <h1>Ändra <%= @course.name %></h1>
+      <span>Tänk på att fylla i alla fält och ge en kort beskrivning av vad kursen innehåller. </span>
     </div>
    </div>
+
+<div class="spacer span8"></div>   
+
 <div id="result-wrapper">  
 
 <%= form_for (@course) do |f| %>
@@ -50,27 +54,27 @@ $(function() {
     </div>
   <% end %>
 
-  <div class="field span3">
+  <div class="field span2">
     <%= f.label :name, 'Name' %>   
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'span2' %>
   </div>
-  <div class="field span4">
+  <div class="field span6">
     <%= f.label :location_id, 'Plats' %>  
-    <%= f.collection_select :location_id, @locations, :id, :name, :prompt => "Välj en plats" %>
+    <%= f.collection_select :location_id, @locations, :id, :name,:prompt => "Välj en plats" %>
   </div>
-  <div class="field span3">
+  <div class="field span2">
     <%= f.label :price, 'Pris' %>   
     <%= f.text_field :price, :class => 'span1' %>
   </div>    
-  <div class="field span4">
+  <div class="field span6">
     <%= f.label :city, 'Stad' %>  
     <%= f.text_field :city %>
   </div>
-  <div class="field span3">
+  <div class="field span2">
     <%= f.label :participants, 'Antal deltagare' %>   
     <%= f.select :participants, (1..19), {}, {:class => 'span1'} %>
   </div>
-  <div class="field span4">
+  <div class="field span6">
     <%= f.label :province, 'Län' %>    
     <%= f.select :province, @provinces, :prompt => "Välj ett län" %>
   </div>
@@ -88,8 +92,9 @@ $(function() {
 
   <div class="spacer-small span8"></div>
 
-  <div class="field span8">
+  
     <% (@course_sessions).each_with_index do |session, i| %>
+    <div class="field span8">
       <%= f.label 'Kurstillfälle' + (i+1).to_s, :class => 'span2' %>
       <%= f.label 'Sluttid', :class => 'span5' %>
       
@@ -102,8 +107,9 @@ $(function() {
       </div>
       
       <% i + 1%>
+      </div>
     <% end %>
-  </div>
+  
 
   <div class="spacer span8"></div>
 
