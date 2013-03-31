@@ -21,10 +21,13 @@
     </div>
     <div id="header-text">
       <h1><%= @tag.name %>kurser</h1>
+      <span>Det här är alla kurser som har taggats med '<%= @tag.name%>', klicka på en för att komma vidare.</span>
     </div>
    </div>
-  <br /><br />
-  <div id="map-wrapper">
+
+  <div class="spacer span8"></div> 
+  
+  <div id="map-wrapper span8">
     <div id="map-google-label">
       <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
     </div>
@@ -32,9 +35,11 @@
   
   <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
   
+  <div class="spacer span8"></div>
+
   <div id="result-wrapper">  
-    <% @courses.each do |course| %>
-      <div id="result">
+    <% @courses.each.with_index do |course, i| %>
+      <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
         <div id="result-header"><%= link_to course.name, course %></div>
         <div id="result-marker"><img src="../assets/price-marker.png"></div>
         <div id="result-price"><%= course.price %></div>      
@@ -43,14 +48,16 @@
         <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
                 
         <% course.course_tags.each do |ct| %>      
-          <div id="result-category"><%= link_to ct.tag.name, ct.tag %></div>
+          <div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
         <% end %>
       </div>                
     <% end %>
 
     </div>
 
-<%= link_to 'Edit Tag', edit_tag_path(@tag) %> |
-<%= link_to 'Back to Tags', tags_path %>
+<div class="spacer span8"></div> 
+<%= link_to 'Ändra Tag', edit_tag_path(@tag), :class => 'btn btn-info' %>
+<%= link_to 'Tillbaka', tags_path(), :class => 'btn' %>
+<div class="spacer-large span8"></div> 
 
 </div>

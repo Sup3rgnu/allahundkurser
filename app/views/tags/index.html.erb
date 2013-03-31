@@ -13,16 +13,17 @@
     </div>
   </div>
 
+  <div class="spacer span8"></div> 
+
   <div id="result-wrapper">  
-    <div id="result">
-    <% @tags.each do |tag| %>    
-      <div id="result-tag-category"><%= link_to tag.name, tag %></div>    
-    <% end %>
-    </div>
-    
-    <div style="margin-top:50px">
-      <%= link_to 'New Tag', new_tag_path %>
+    <div id="result" class="span8">
+      <% @tags.each do |tag| %> 
+        <div id="result-category" class="btn btn-success"><%= link_to tag.name, tag %></div>        
+      <% end %>
     </div>
   </div>
+    
+  <div class="spacer span8"></div>
+    <div class="span8"><%= link_to 'Skapa ny tag', new_tag_path, :class => 'btn btn-info' %></div>
 
 </div>

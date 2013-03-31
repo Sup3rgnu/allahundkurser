@@ -4,6 +4,18 @@
   <%= link_to "Organisationer", orgs_path, :class => 'sub_nav' %>
   <%= link_to "Kurser", courses_path, :class => 'sub_nav' %>
 
+  <% if user_signed_in? %>
+    <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
+  <% else %>
+    <%= link_to('Login', new_user_session_path)  %>
+  <% end %>
+  <% if user_signed_in? %>
+    Inloggad som <%= current_user.email %>
+    <%= link_to('Edit account', edit_user_registration_path) %>
+  <% else %>
+    <%= link_to('Sign up', new_user_registration_path)  %>
+  <% end %>
+
 </div>
 <div id="search-wrapper">
   <form action="<%= courses_path %>" method="get" class="form-search">

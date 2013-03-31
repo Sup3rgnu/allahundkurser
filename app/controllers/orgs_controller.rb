@@ -1,7 +1,5 @@
 class OrgsController < ApplicationController
 
-  http_basic_authenticate_with :name => "admin", :password => "grolle", :except => [:index, :show]
-
   # GET /orgs
   # GET /orgs.json
   def index

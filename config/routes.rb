@@ -1,6 +1,8 @@
 Allahundkurser::Application.routes.draw do
 
 
+  devise_for :users
+
   match 'tags/getCourseCoords' => 'tags#getCourseCoords', :via => :get
   match 'orgs/getCourseCoords' => 'orgs#getCourseCoords', :via => :get
   match 'courses/getCourseCoords' => 'courses#getCourseCoords', :via => :get
