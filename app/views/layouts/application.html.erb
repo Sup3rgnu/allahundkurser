@@ -6,14 +6,20 @@
     <title><%= content_for?(:title) ? yield(:title) : "Allahundkurser" %></title>
     <meta name="description" content="">
     <meta name="author" content="">
+    
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Ubuntu:300,500,300italic", "application" %>
+
     <%= javascript_include_tag "application" %>
       <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr31V9bZKa2TSUVPiNPJEINT3LFRAkuxY&sensor=false"></script>
   <script src="http://j.maxmind.com/app/geoip.js"></script>
   <script type="text/javascript">var switchTo5x=true;</script>
   <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
   <script type="text/javascript">stLight.options({publisher: "ur-1eb36199-4464-7571-f771-d8f46574b177"});</script> 
+    
+      <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", "courses" %>
+    <%= javascript_include_tag "jquery-ui-timepicker-addon.js", "courses" %>
+
     <%= csrf_meta_tags %>
 
     <link rel="shortcut icon" href="/favicon.png" />
