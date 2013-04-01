@@ -1,5 +1,6 @@
 Allahundkurser::Application.routes.draw do
 
+  match '/users/admin', :to => 'users#admin', :via => :get
 
   devise_for :users
 

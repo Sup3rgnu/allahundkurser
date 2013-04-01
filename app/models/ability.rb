@@ -6,6 +6,7 @@ class Ability
 		user ||= User.new #guest user
 
 		can :read, :all
+		cannot :read, User
 
 		if user.role == 'superuser'
 			can :manage, :all
