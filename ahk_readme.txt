@@ -21,3 +21,11 @@ commit, push
 
 
 https://devcenter.heroku.com/articles/rails-asset-pipeline
+
+
+GIT
+
+Rollback to last commit:
+
+git reset --hard HEAD^  
+git clean -f

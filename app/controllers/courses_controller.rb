@@ -15,7 +15,10 @@ class CoursesController < ApplicationController
 	    		@ct = CourseTag.where('tag_id = ? ', @tag.first.id)
 
 	    		@ct.each do |c|
-	    			@courses.push Course.find(c.course_id)
+	    			tmp = Course.find(c.course_id)
+	    			if !@courses.any? {|c| c.id==tmp.id} 
+	    				@courses.push(tmp)
+	    			end 
 	    		end
     		end
 
