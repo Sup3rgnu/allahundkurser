@@ -22,7 +22,7 @@
     <% if @users && @users.first %>
       <% @users.each.with_index do |user, i| %>
         <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
-          <div class="span2"><%= link_to user.email, user %></div>  
+          <div class="span2"><%= link_to user.email, '#' %></div>  
           <div class="span2"><%= user.role %></div>
           <div class="span3"><%= user.created_at %></div>  
         </div>

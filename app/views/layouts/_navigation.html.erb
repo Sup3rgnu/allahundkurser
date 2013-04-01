@@ -2,7 +2,7 @@
   <%= link_to "Allahundkurser", root_path, :class => 'brand' %>
   
   <% if user_signed_in? %>
-    <% if user_signed_in? %>
+    <% if can? :update, User %>
       <a href="/users/admin" class="sub_nav">Admin</a>
     <% else %>
       <%= link_to "Admin", courses_path, :class => 'sub_nav' %>

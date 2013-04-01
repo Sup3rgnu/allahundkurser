@@ -86,6 +86,19 @@ class OrgsController < ApplicationController
     end
   end
 
+  def myOrgs
+    @courses = @org.courses.all 
+    @locations = Location.all
+    @tags = Tag.all
+    @provinces = Course.provinces
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @org }
+    end
+    
+  end
+
   def getCourseCoords
     @org = Org.find(params[:id])
     @courses = @org.courses.all 
