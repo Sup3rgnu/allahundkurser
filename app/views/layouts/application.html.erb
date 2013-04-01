@@ -45,9 +45,9 @@
       <div class="clear"></div> 
     </div> <!--! end of #main -->
 
-    <footer id="footer" class="alert alert-info span4 pull-right">        
+    <footer id="footer" class="alert alert-info span5 pull-right">        
         <% if user_signed_in? %>
-          Inloggad som <%= current_user.email %>
+          <span class="nav-username">Inloggad som <%= current_user.email %></span>
           <%= link_to('Ändra din profil ', edit_user_registration_path) %>
         <% else %>
           <%= link_to('Registrera ett konto ', new_user_registration_path)  %>
