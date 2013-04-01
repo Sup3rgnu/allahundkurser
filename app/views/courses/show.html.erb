@@ -104,11 +104,22 @@
 
 <div class="spacer span8"></div> 
 
-<%= link_to 'Boka kursen', edit_course_path(@course), :class => 'btn btn-primary' %>
-<%= link_to 'Uppdatera kursen', edit_course_path(@course), :class => 'btn btn-info' %>
-<%= link_to 'Tillbaka', courses_path, :class => 'btn' %>
-<div class="spacer-small span8"></div> 
+<div class="span8">
+  <% if !user_signed_in?%>
+    <%= link_to 'Boka kursen', edit_course_path(@course), :class => 'btn btn-primary' %>
+  <% end %>
 
-<div class="spacer-large span8"></div> 
+  <% if can? :update, Course %>
+    <%= link_to 'Ändra', edit_course_path(@course), :class => 'btn btn-info' %>
+  <% end %>
+
+  <% if can? :destroy, Course %>
+    <%= link_to "Ta bort", course_path(@course), :data => { :confirm => "Vill du ta bort kursen?" }, :method => :delete, :class => 'btn btn-danger' %>
+  <% end %>
+
+  <%= link_to 'Tillbaka', courses_path, :class => 'btn' %>
+</div>
+
+<div class="spacer-small span8"></div>
 
 </div>

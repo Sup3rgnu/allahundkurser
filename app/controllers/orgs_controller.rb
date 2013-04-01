@@ -1,10 +1,10 @@
 class OrgsController < ApplicationController
-
+  
+  load_and_authorize_resource :except => [:getCourseCoords]
+  
   # GET /orgs
   # GET /orgs.json
   def index
-    @orgs = Org.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orgs }
@@ -14,7 +14,7 @@ class OrgsController < ApplicationController
   # GET /orgs/1
   # GET /orgs/1.json
   def show
-    @org = Org.find(params[:id])
+
     @courses = @org.courses.all
     @locations = Location.all
     @tags = Tag.all
@@ -28,9 +28,9 @@ class OrgsController < ApplicationController
 
   # GET /orgs/new
   # GET /orgs/new.json
-  def new
-    @org = Org.new
+  def new    
 
+    @org.url = 'http://'
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @org }
@@ -39,17 +39,18 @@ class OrgsController < ApplicationController
 
   # GET /orgs/1/edit
   def edit
-    @org = Org.find(params[:id])
+    @org.user_id = current_user.id
   end
 
   # POST /orgs
   # POST /orgs.json
   def create
-    @org = Org.new(params[:org])
 
+    @org.user_id = current_user.id
+  
     respond_to do |format|
       if @org.save
-        format.html { redirect_to @org, notice: 'Org was successfully created.' }
+        format.html { redirect_to @org, notice: 'Organisationen har skapats.' }
         format.json { render json: @org, status: :created, location: @org }
       else
         format.html { render action: "new" }
@@ -61,11 +62,10 @@ class OrgsController < ApplicationController
   # PUT /orgs/1
   # PUT /orgs/1.json
   def update
-    @org = Org.find(params[:id])
 
     respond_to do |format|
       if @org.update_attributes(params[:org])
-        format.html { redirect_to @org, notice: 'Org was successfully updated.' }
+        format.html { redirect_to @org, notice: 'Organisationen har uppdaterats.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,11 +77,11 @@ class OrgsController < ApplicationController
   # DELETE /orgs/1
   # DELETE /orgs/1.json
   def destroy
-    @org = Org.find(params[:id])
+
     @org.destroy
 
     respond_to do |format|
-      format.html { redirect_to orgs_url }
+      format.html { redirect_to orgs_url, notice: 'Organisationen har tagits bort.' }
       format.json { head :no_content }
     end
   end

@@ -5,7 +5,7 @@
 
   <div id="header-wrapper">
     <div id="header-logo">
-      <img src="assets/logo_test.png">
+      <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
       <h1>Alla Locations</h1>
@@ -13,9 +13,11 @@
     </div>
   </div>
 
+  <div class="spacer span8"></div> 
+
   <div id="result-wrapper">  
-    <% @locations.each do |location| %>
-    <div id="result">
+    <% @locations.each.with_index do |location, i| %>
+    <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
       <div id="result-location-name"><%= link_to location.name, location %></div>
       <div id="result-marker"><img src="../assets/city-marker.png"></div>
       <div id="result-coord"><%= location.lat %></div>
@@ -24,9 +26,12 @@
     </div>
     <% end %>
 
-    
-    <div style="margin-top:100px">
-      <%= link_to 'New Location', new_location_path %>
+    <div class="spacer span8"></div> 
+
+    <% if can? :create, Location %>
+      <div class="span8"><%= link_to 'Skapa en plats', new_location_path, :class => 'btn btn-info' %></div>
+    <% end %>
+
     </div>
   </div>
 

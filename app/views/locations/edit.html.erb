@@ -8,13 +8,14 @@
       <img src="../../assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Ändra en location</h1>
+      <h1><%= @location.name %></h1>
     </div>
    </div>
 
-<%= render 'form' %>
+  <div class="spacer span8"></div> 
 
-<%= link_to 'Show', @location %> |
-<%= link_to 'Back', locations_path %>
+  <%= render 'form' %>
+
+  <div class="spacer span8"></div> 
 
 </div>

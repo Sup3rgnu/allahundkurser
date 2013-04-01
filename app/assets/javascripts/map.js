@@ -38,7 +38,7 @@ function putMarker(map, data){
               
   google.maps.event.addListener(marker, 'click', (function(marker, i) {
     return function() {
-      var contentString = "<h3>" + data[0].name + "</h3>" + data[0].price;
+      var contentString = "<h3>" + data[0].name + "</h3>" + data[0].desc;
       infowindow.setContent(contentString);
       infowindow.open(map, marker);
     }
@@ -49,7 +49,7 @@ function putMarker(map, data){
 // Puts multiple markers on map, expects json data on the form [][],
 // for the second array 0 = courses (name, desc), 1 = locations (lat, lng)
 function putMultipleMarkers(map, data){
-  
+
   var infowindow = new google.maps.InfoWindow(), marker, i;
   var locations = new Array();
 
@@ -74,7 +74,7 @@ function putMultipleMarkers(map, data){
                 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        var contentString = "<h3>" + data[i][0].name + "</h3>" + data[i][0].price;
+        var contentString = "<h3>" + data[i][0].name + "</h3>" + data[i][0].desc;
         infowindow.setContent(contentString);
         infowindow.open(map, marker);
       }

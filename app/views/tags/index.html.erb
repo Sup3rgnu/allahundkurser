@@ -5,7 +5,7 @@
 
   <div id="header-wrapper">
     <div id="header-logo">
-      <img src="assets/logo_test.png">
+      <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
       <h1>Alla Taggar</h1>
@@ -24,6 +24,7 @@
   </div>
     
   <div class="spacer span8"></div>
+  <% if can? :update, Tag %>
     <div class="span8"><%= link_to 'Skapa ny tag', new_tag_path, :class => 'btn btn-info' %></div>
-
+<% end %>
 </div>

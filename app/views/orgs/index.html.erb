@@ -5,7 +5,7 @@
 
   <div id="header-wrapper">
     <div id="header-logo">
-      <img src="assets/logo_test.png">
+      <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
       <h1>Alla Organisationer</h1>
@@ -15,16 +15,29 @@
 
   <div class="spacer span8"></div> 
 
-  <div id="result-wrapper">  
-    <% @orgs.each.with_index do |org, i| %>
-    <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
-      <div id="result-org-name"><%= link_to org.name, org %></div>
-      <div id="result-org-desc"><%= org.description %></div>  
-    </div>
+  <div id="result-wrapper">
+
+    <% if @orgs && @orgs.first %>
+      <% @orgs.each.with_index do |org, i| %>
+        <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
+          <div class="span2"><%= link_to org.name, org %></div>
+          <div class="span6"><%= org.description %></div>  
+        </div>
+      <% end %>
+
+    <% else %>
+      <div id="result" class="span8">
+        <span>Ops. Sorry, det finns organisationer ännu.</span>
+      </div>
     <% end %>
+
   </div>
 
 <div class="spacer span8"></div> 
-<div class="span8"><%= link_to 'Skapa en organisation', new_org_path, :class => 'btn btn-info' %></div>
+
+<% if can? :create, Org %>
+  <div class="span8"><%= link_to 'Skapa en organisation', new_org_path, :class => 'btn btn-info' %></div>
+<% end %>
+
 <div class="spacer-large span8"></div> 
 </div>

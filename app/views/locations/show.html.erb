@@ -1,8 +1,22 @@
 <!-- TODO: Refactor put somewhere else -->
 <script>
 	$(document).ready(function() {
-		var map = createMap(<%= @location.lat %>, <%= @location.lng %>);
-		putMarker(map, <%= @location.lat %>, <%= @location.lng %>, '<%= @location.name %>', "Humlegården är trevlig");
+		
+    var coords = new Array();    
+    coords['lat'] = <%= @location.lat %>;
+    coords['lng'] = <%= @location.lng %>;
+
+    var map = createMap(coords);
+
+    var data = new Array();
+    var tmp = new Array();
+    tmp['name'] = '<%= @location.name %>';
+
+    data.push(tmp);
+    data.push(coords);
+
+		putMarker(map, data);
+
 	});
 </script>
 <!-- END TODO -->
@@ -17,25 +31,23 @@
       <img src="../assets/logo_test.png">
     </div>
     <div id="header-text">
-      <h1>Visa en location</h1>
+      <h1><%= @location.name %></h1>
     </div>
    </div>
-<p>
-  <b>Name:</b>
-  <%= @location.name %>
-</p>
+  
+  <div class="spacer span8"></div> 
 
-<p>
-  <b>Latitude:</b>
-  <%= @location.lat %>
-</p>
-<p>
-  <b>Longitude:</b>
-  <%= @location.lng %>
-</p>
-<br /><br />
+  <div id="result" class='span8'>
+    <span>
+      <b>Name: </b><%= @location.name %><br />
+      <b>Latitude: </b><%= @location.lat %><br />
+      <b>Longitude: </b><%= @location.lng %>
+    </span>
+  </div>
 
-	<div id="map-wrapper">
+  <div class="spacer span8"></div> 
+
+  <div id="map-wrapper span8">
 		<div id="map-google-label">
 			<div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
 		</div>
@@ -43,7 +55,11 @@
 	
 	<div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
 
-<%= link_to 'Edit Location', edit_location_path(@location) %> |
-<%= link_to 'Back to Locations', locations_path %>
+  <div class="spacer span8"></div> 
+
+  <% if can? :update, Location %>
+      <%= link_to 'Ändra en plats', edit_location_path(@location), :class => 'btn btn-info' %>
+  <% end %>
+ <%= link_to 'Tillbaka', orgs_path, :class => 'btn' %>
 
 </div>

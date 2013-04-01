@@ -1,29 +1,45 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<div class="spacer span12"></div> 
+
+<div class="span4">
+
+<h1>Ändra din profil</h1>
+
+<div class="spacer-small span4"></div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <div><%= f.label :email %>
+  <%= f.email_field :email, :disabled => true %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+  <div><%= f.label :password, 'Nytt lösenord' %> <i>(lämna tomt om du inte vill ändra lösenordet.)</i>
+  <%= f.password_field :password, :autofocus => true, :autocomplete => "off" %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label :password_confirmation, 'Nytt lösenord, igen' %>
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div><%= f.label :current_password, 'Nuvarande lösenord' %> <i>(Vi behöver ditt lösenord för att genomföra ändringarna)</i>
   <%= f.password_field :current_password %></div>
+  
+  <div class="spacer-small span4"></div>
 
-  <div><%= f.submit "Update" %></div>
+  <div><%= f.submit "Update", :value => 'Spara', :class => 'btn btn-primary' %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+</div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<div class="span4">
+  <h1>Missnöjd? Avsluta ditt konto.</h1>
 
-<%= link_to "Back", :back %>
+  <div class="spacer-small span4"></div>
+
+  <span>Heads up! Om du tar bort ditt konto är det permanent, då går det <strong>inte</strong> att återskapa senare.</span>
+  <div class="spacer-small span4"></div>
+
+  <p><%= button_to "Ta bort kontot", registration_path(resource_name), :data => { :confirm => "Vill du ta bort kontot?" }, :method => :delete, :class => 'btn btn-danger' %></p>
+<div>

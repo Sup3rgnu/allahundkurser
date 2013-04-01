@@ -1,11 +1,11 @@
 class CoursesController < ApplicationController
 
-	before_filter :authenticate_user!, :except => [:show, :index]
+	# before_filter :authenticate_user!, :except => [:show, :index]
+	load_and_authorize_resource :except => [:getCourseCoords]
 
 	# GET /orgs
 	# GET /orgs.json
   	def index
-
     	@courses = Course.search(params[:search])
     	
     	if (params.has_key?(:search))
@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
 	    end
 	end
 
-	def create 
+	def create 		
 		@org = Org.find(params[:org_id])
 		@course = @org.courses.create(params[:course])
 		
@@ -78,8 +78,6 @@ class CoursesController < ApplicationController
   	end
 
   	def update
-    	@course = Course.find(params[:id])    	
-
     	# Remove old sessions and create new 
 		@course_sessions = CourseSession.where("course_id = ?", params[:id])
 		@course_sessions.each do |cs|
@@ -149,9 +147,7 @@ class CoursesController < ApplicationController
 	    end     		
   	end
 
-	def show
-	    @course = Course.find(params[:id])	    
-
+	def show   
 	    respond_to do |format|
 	      format.html # index.html.erb
 	      format.json { render json: @course}
@@ -159,11 +155,15 @@ class CoursesController < ApplicationController
 	end
 
 
-	def destroy
-		@org = Org.find(params[:org_id])
-		@course = @org.courses.find(params[:id])
+	def destroy		
+		@course = Course.find(params[:id])
+		@org = @course.org
 		@course.destroy
-		redirect_to org_path(@org)
+		
+		respond_to do |format|
+	      format.html { redirect_to orgs_url, notice: 'Kursen har tagits bort.' }
+	      format.json { head :no_content }
+	    end
 	end
 
 	def getCourseCoords

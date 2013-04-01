@@ -4,7 +4,12 @@
     map = createMap(getMyCoords());
 
     $.getJSON('getCourseCoords', { id: <%= @org.id %> }, function(data) {
-      putMultipleMarkers(map, data);
+      
+      if (data.length == 1)
+        putMarker(map, data);
+      else
+        putMultipleMarkers(map, data);
+      
     });
   });
 </script>
@@ -21,8 +26,8 @@
     </div>
     <div id="header-text">
       <h1><%= @org.name %></h1>
-      <p><%= @org.description %></p>
-      <%= link_to 'Hemsida', @org.url %>
+      <span><%= @org.description %></span>
+      <span>Besök vår <%= link_to 'hemsida', @org.url %> för mer info.</span>
     </div>
    </div>
 
@@ -39,11 +44,16 @@
   <div class="spacer span8"></div>
 
   <div id="result-wrapper">  
+    <% if @courses && @courses.first %> 
     <% @courses.each.with_index do |course, i| %>
       <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
         <div id="result-header"><%= link_to course.name, course %></div>
         <div id="result-marker"><img src="../assets/price-marker.png"></div>
-        <div id="result-price"><%= course.price %></div>      
+        <% if course.course_sessions.blank? %>
+            <div id="result-date"> - </div>
+          <% else %>
+            <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+        <% end %>     
         <div id="result-marker"><img src="../assets/city-marker.png"></div>
 
         <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
@@ -55,20 +65,37 @@
         <% end %>
       </div>                
     <% end %>
+
+    <% else %>
+      <div id="result" class="span8">
+        <span>Ops. Sorry, det finns kurser här ännu.</span>
+      </div>
+    <% end %>
   </div>
 
   <div class="spacer span8"></div>
 
-  <%= link_to 'Ändra organisationen', edit_course_path(@org), :class => 'btn btn-info' %>
-  <%= link_to 'Tillbaka', orgs_path, :class => 'btn' %>
+  <div class="span8">  
+    <% if can? :update, Org %>
+      <%= link_to 'Ändra', edit_org_path(@org), :class => 'btn btn-info' %>
+    <% end %>
 
-  <div class="spacer-large span8"></div>
-  <hr class="span8">
-  <h4 class="span8">Skapa en ny kurs (temp) </h4>
-  <div class="spacer-small span8"></div>
+    <% if can? :destroy, Org %>
+      <%= link_to "Ta bort", org_path(@org), :data => { :confirm => "Vill du ta bort organisationen?" }, :method => :delete, :class => 'btn btn-danger' %>
+    <% end %>
 
-  <%= render 'courses/form' %>
+    <%= link_to 'Tillbaka', orgs_path, :class => 'btn' %>
+  </div>
 
-  <div class="spacer-large span8"></div>
+  <% if can? :update, Org %>
+    <div class="spacer-large span8"></div>
+    <hr class="span8">
+
+    <h4 class="span8">Skapa en ny kurs </h4>
+    <div class="spacer-small span8"></div>
+
+    <%= render 'courses/form' %>
+  
+  <% end %>
 
 </div>

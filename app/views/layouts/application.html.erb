@@ -40,7 +40,26 @@
           </footer>
         </div>
       </div> <!--! end of .container -->
+
+      <div class="spacer-large"></div>       
+      <div class="clear"></div> 
     </div> <!--! end of #main -->
+
+    <footer id="footer" class="alert alert-info span4 pull-right">        
+        <% if user_signed_in? %>
+          Inloggad som <%= current_user.email %>
+          <%= link_to('Ändra din profil ', edit_user_registration_path) %>
+        <% else %>
+          <%= link_to('Registrera ett konto ', new_user_registration_path)  %>
+        <% end %>
+        eller
+        <% if user_signed_in? %>
+          <%= link_to(' Logga ut', destroy_user_session_path, :method=>'delete') %>
+        <% else %>
+          <%= link_to(' Logga in', new_user_session_path)  %>
+        <% end %>
+
+      </footer>
   </body>
 </html>
 
