@@ -23,13 +23,6 @@ ActiveRecord::Schema.define(:version => 20130331131504) do
 
   add_index "course_sessions", ["course_id"], :name => "index_course_sessions_on_course_id"
 
-  create_table "course_tags", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "tag_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.integer  "price"
