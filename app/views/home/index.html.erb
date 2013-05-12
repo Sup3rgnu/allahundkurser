@@ -7,12 +7,16 @@
 <!-- END TODO -->
 
 <div id="pagewrap">
+
+	<!--
 	<div id="share-wrapper">
 		<span class='st_sharethis_hcount' displayText='ShareThis' style="float:right"></span>
 		<span class='st_facebook_hcount' displayText='Facebook' style="float:right"></span>
 		<span class='st_twitter_hcount' displayText='Tweet' style="float:right"></span>
 	</div>
-	
+	-->
+
+	<!--
 	<div id="header-wrapper">
 		<div id="header-logo">
 			<img src="../assets/logo_test.png">
@@ -22,39 +26,49 @@
 			<p>Bacon ipsum dolor sit amet chuck shank pork loin fatback jerky tongue spare ribs sirloin, sausage pork belly flank short ribs prosciutto hamburger brisket. Beef salami hamburger boudin tri-tip tail chuck ball tip meatball pork chop turducken strip steak sirloin. Pork chop cow pancetta tongue. Meatball beef jowl pork loin. Spare ribs tail shoulder drumstick, shankle turducken cow frankfurter jowl ribeye meatloaf.</p> 
 		</div>
 	</div>
+	-->
 
-	<div class="spacer span8"></div> 
-	
-	<div id="map-wrapper span8">
-		<div id="map-google-label">
-			<div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
+	<div class="empty-box">
+		<div id="map-wrapper">
+			<div id="map-google-label">
+				<div id="map_canvas" class="gmap"></div>
+			</div>
 		</div>
+	
+		<div class="black-box">
+			<div class="filter-box">
+				<%= render 'form' %>
+			</div>
+		</div>		
+		<!--
+		<div id="map-geoLite">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+		-->
 	</div>
 	
-	<div id="map-geoLite" class="span6" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
+	<!--
 
-	<div class="spacer span8"></div>
+	-->
 
-	<div id="result-wrapper">
-    	<% @courses.each.with_index do |course, i| %>
-    	<div id="result" class='muted span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
-      		<div id="result-header"><%= link_to course.name, course %></div>
-			<div id="result-marker"><img src="../assets/price-marker.png"></div>
-		    <% if course.course_sessions.blank? %>
-		        <div id="result-date"> - </div>
-		      <% else %>
-		        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+	<div class="white-box">
+		<div id="result-wrapper">
+	    	<% @courses.each.with_index do |course, i| %>
+	    	<div id="result" class='muted <%= (i%2 == 0) ? "" : "stripped" %>'>
+	      		<div id="result-header"><%= link_to course.name, course %></div>
+				<div id="result-marker"><img src="../assets/price-marker.png"></div>
+			    <% if course.course_sessions.blank? %>
+			        <div id="result-date"> - </div>
+			      <% else %>
+			        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+			    <% end %>
+				<div id="result-marker"><img src="../assets/city-marker.png"></div>
+				<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+				<% course.course_tags.each do |ct| %>      
+	        		<div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
+			    <% end %>
+	    	</div>
 		    <% end %>
-			<div id="result-marker"><img src="../assets/city-marker.png"></div>
-			<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
-			<% course.course_tags.each do |ct| %>      
-        		<div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
-		    <% end %>
-    	</div>
-    <% end %>
-	</div>
-
-<div class="spacer-large span8"></div> 
+		</div>
+	</div> 
 
 </div>
 

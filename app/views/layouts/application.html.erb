@@ -12,13 +12,12 @@
 
     <%= javascript_include_tag "application" %>
       <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr31V9bZKa2TSUVPiNPJEINT3LFRAkuxY&sensor=false"></script>
-  <script src="http://j.maxmind.com/app/geoip.js"></script>
-  <script type="text/javascript">var switchTo5x=true;</script>
-  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-  <script type="text/javascript">stLight.options({publisher: "ur-1eb36199-4464-7571-f771-d8f46574b177"});</script> 
-    
-    <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", "application" %>
+    <script src="http://j.maxmind.com/app/geoip.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "ur-1eb36199-4464-7571-f771-d8f46574b177"});</script> 
 
+    <%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css", "application" %>
     <%= csrf_meta_tags %>
 
     <link rel="shortcut icon" href="/favicon.png" />
@@ -28,6 +27,9 @@
   <body>
     <header class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
+        <div id="header-logo">
+          <%= link_to image_tag("../assets/logo.png", :border => 0), root_path%>      
+        </div>
         <div class="container">
           <%= render 'layouts/navigation' %>
         </div>
@@ -36,15 +38,10 @@
     </header>
     <div id="main" role="main">
       <div class="container">
-        <div class="content">
-           <div class="row">
-            <div class="span12">
-              <%= render 'layouts/messages' %>
-              <%= yield %>
-            </div>
-          </div>
-          <footer>
-          </footer>
+        <div class="content">           
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+            <footer></footer>
         </div>
       </div> <!--! end of .container -->
 
@@ -52,19 +49,9 @@
       <div class="clear"></div> 
     </div> <!--! end of #main -->
 
+<!--
     <footer id="footer" class="alert alert-info span5 pull-right">        
-        <% if user_signed_in? %>
-          <span class="nav-username">Inloggad som <%= current_user.email %></span>
-          <%= link_to('Ändra din profil ', edit_user_registration_path) %>
-        <% else %>
-          <%= link_to('Registrera ett konto ', new_user_registration_path)  %>
-        <% end %>
-        eller
-        <% if user_signed_in? %>
-          <%= link_to(' Logga ut', destroy_user_session_path, :method=>'delete') %>
-        <% else %>
-          <%= link_to(' Logga in', new_user_session_path)  %>
-        <% end %>
+-->
 
       </footer>
   </body>

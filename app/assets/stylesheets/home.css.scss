@@ -28,13 +28,12 @@ button:focus {
 	outline: none; 
 }
 
-
 /************************************************************************************
 GENERAL STYLING
 *************************************************************************************/
 body {
 	background-image: url('debut_light.png');
-	font-family: 'Ubuntu', sans-serif;
+	font-family: futura-pt, futura, Ubuntu, helvetica, arial, sans-serif;
 	font-size:12px;
 	line-height:1.7;
 	margin-top: 60px;
@@ -46,10 +45,22 @@ h1 {
 	color:#62c462;
 	
 }
+
+#main {
+	background-image: url('hund-bg.jpg');
+	background-size:100%;
+	background-repeat:no-repeat;
+	height: 550px;
+}
+
 #pagewrap {
-	width: 870px;
+	width: 770px;
 	margin: 0 auto;
 	padding-bottom: 250px;
+}
+#navwrap {
+	width: 770px;
+	margin: 0 auto;
 }
 #topline {
 	background: #00B158;
@@ -88,17 +99,29 @@ SHARE STYLE
 /************************************************************************************
 SEARCH STYLE
 *************************************************************************************/
-.nav-links {
-	float:left;
-	display:block;
+.nav-space {
+	margin-left: 10px;
+}
+
+#login-wrapper {
+	color: #ffffff;
+	font-size: 10px;
+	float: right;
+	margin: 5px 0 5px 0;
+}
+
+#login-wrapper a{
+	color: #ffffff;
 }
 
 #search-wrapper {
+	height: 70px;
 	display:block;
 	float: right;
-	padding: 3px 0px 0px 3px;
-	margin: 7px auto 0 auto;
+	padding: 0px;
+	margin: 0px;
 }
+
 .search-query {
 	font: Ubuntu, sans-serif;
 }
@@ -115,16 +138,82 @@ SEARCH STYLE
 /************************************************************************************
 HEADER STYLE
 *************************************************************************************/
+.navbar {
+	box-shadow: 0 0px 3px rgba(0, 0, 0, 0.6);
+}
+
+nav.navbar-inner {
+	height: 70px;
+    background: #EF5959;
+    border: none;
+}
+
+.nav-links {
+	height: 70px;
+	float:left;
+	display:block;	
+}
+
+.nav-links .nav-btn {
+	float: right;
+	font-weight: normal;
+	font-size: 14px;
+	font-family: futura-pt, futura, helvetica, arial, sans-serif;
+	color: #ffffff;
+	width: 120px;
+	height: 70px;
+	display: block;
+	text-align: center;
+	line-height: 1.5;
+	border: 0 solid;
+	border-left: 1px solid rgba(0,0,0, 0.2);
+	word-spacing: 5px;
+}
+
+.nav-links .nav-btn:last {
+	border: 0 solid black;
+	border-right: 1px solid;
+}
+
+.nav-links .nav-btn:hover {
+	background: rgba(0,0,0, 0.4);
+}
+.nav-links .nav-btn a {
+	float: right;
+	font-weight: normal;
+	font-family: "futura-pt", futura, helvetica, arial, sans-serif;
+	color: #ffffff;
+	text-shadow: 0px -1px rgba(0,0,0, 0.4);
+	padding-top: 12px;
+}
+
+.nav-links .nav-btn a {
+	text-decoration:none;
+}
+
+.sub_nav {
+	float: left;
+	display: block;
+	padding: 10px 20px 10px;
+	font-size: 16px;
+	font-family: "futura-pt", futura, helvetica, arial, sans-serif;
+	color: #ffffff;
+}
+
+.sub_nav:hover {
+	text-decoration:none;
+	font-weight: normal;
+}
+
 #header-wrapper {
 	width: 870px;
 }
 #header-logo {
-	height: 130px;
-	width: 140px;
-	
+	width: 50px;
+	height: 50px;
 	float: left;
-	
-	padding: 15px 0px 0px 0px;
+	margin: 10px 0px 0px 150px;
+	padding: 0;
 }
 #header-text {
 	width: 700px;
@@ -139,20 +228,30 @@ HEADER STYLE
 	text-shadow: -1px 0px #fff;
 }
 
-.sub_nav {
-	float: left;
-	display: block;
-	padding: 10px 20px 10px;
-	margin-left: -20px;
-	font-size: 20px;
-	font-weight: 200;
-	color: #62c462;
-	text-shadow: 0 1px 0 white;
+input.btn-red {
+	color: #fff;
+	font-size: 10px;
+	font-family: futura-pt, futura, Ubuntu, helvetica, arial, sans-serif;
+	background-color: #EF5959;
+	background-image: -moz-linear-gradient(top, #EF5959, #EF5959);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EF5959), to(#EF5959));
+	background-image: -webkit-linear-gradient(top, #EF5959, #EF5959);
+	background-image: -o-linear-gradient(top, #EF5959, #EF5959);
+	background-image: linear-gradient(to bottom, #EF5959, #EF5959);
+	background-repeat: repeat-x;
 }
 
-.sub_nav:hover {
-	text-decoration:none;
-	color: #777777;
+input.btn-red:hover {
+	color: #fff;
+	font-size: 10px;
+	font-family: futura-pt, futura, Ubuntu, helvetica, arial, sans-serif;
+	background-color: #EF5959;
+	background-image: -moz-linear-gradient(top, #EF5959, #EF5959);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EF5959), to(#EF5959));
+	background-image: -webkit-linear-gradient(top, #EF5959, #EF5959);
+	background-image: -o-linear-gradient(top, #EF5959, #EF5959);
+	background-image: linear-gradient(to bottom, #EF5959, #EF5959);
+	background-repeat: repeat-x;
 }
 
 
@@ -160,28 +259,62 @@ HEADER STYLE
 MAP STYLE
 *************************************************************************************/
 #map-wrapper {
-	width: 864px;
+	width: auto;
 	height: 380px;
-	
-	border: 3px solid #fff;
-	
-	-moz-box-shadow: 0px 1px #ccc;
-	-webkit-box-shadow: 0px 1px #ccc;
-	box-shadow: 0px 1px #ccc;
+	border: 5px solid #4a4a4a;
 }
+
 #map-geoLite {
-	width: 870px;
-	height:0px;
-	
+	width: 770px;
+	height:0px;	
 	padding: 5px 0px 25px 0px;
+	font-weight:300; 
+	color:#999; 
+	font-size:9px;
 }
+
 .gmap img {
-	max-width: none;
+	max-width: 764px;
 }
+
 #map-google-label {
-	
 	font-weight:300;
-	color: #333;
+	color: #4a4a4a;
+}
+
+#map_canvas {
+	width: auto;
+	height:380px;
+}
+
+/************************************************************************************
+MAIN STYLE
+*************************************************************************************/
+
+.black-box {
+	background-color: #4a4a4a;
+	min-height: 60px;
+	margin-top: 0px;
+	color: #fff;
+	width: 770px;
+}
+
+.filter-box {
+	margin: 0px;
+}
+
+.white-box {
+	background-color: #fff;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+	min-height: 600px;
+	display: block;
+	width: 770px;
+}
+
+.empty-box {
+	width: 770px;
+	margin: 40px 0 0 0;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 
@@ -189,34 +322,33 @@ MAP STYLE
 RESULT STYLE
 *************************************************************************************/
 #result-wrapper {
-	width: 870px;
-	
-	margin: 0px 0px 40px 0px;
+	width: auto;
+	margin: 15px 0px 40px 0px;
+
 }
 
 #result {
-	width: 870px;
-	
+	width: 755px;
+	float: left;
+	padding-left: 15px;
 	border-bottom: 1px solid #eee;
  	padding-bottom: 5px;
  	-moz-box-shadow: 0px 1px #fff;
 	-webkit-box-shadow: 0px 1px #fff;
 	box-shadow: 0px 1px #fff;
-	
 	font-size:14px;
 	font-weight:300;
 	color: #333;
 }
 
 #result-wrapper .stripped {
-	background-color: #EFFBEF;
+	background-color: rgba(239, 89, 89, 1);
+	color: #fff;
 }
 
 #result-header {
 	width: 100px;
-	
 	float: left;
-	
 	margin:5px 5px 5px 0px;
 	padding: 9px 0px 0px 5px;
 }
@@ -224,11 +356,9 @@ RESULT STYLE
 	width: auto;
 	float: left;
 	
-	margin:10px;
+	margin: 15px 10px 10px 10px;
 	padding: 3px 10px 3px 10px;
-	
 
-	
 	text-align:center;
 	letter-spacing: 1px;
 	font-weight:300;

@@ -1,10 +1,11 @@
 class HomeController < ApplicationController
   def index
-	@courses = Course.find(:all, :order => "id desc", :limit => 10) 
+	@courses = Course.find(:all, :order => "id desc", :limit => 10)
+	@locations = Location.all
     respond_to do |format|
     	format.html # show.html.erb
-		format.json { render json: @courses }
-	end
+		format.json { render :json => { :courses => @courses, :locations => @locations}}
+	end	   
   end
 
   def getCoords

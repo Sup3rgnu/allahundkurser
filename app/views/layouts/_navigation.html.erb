@@ -1,6 +1,10 @@
+<div id="navwrap">
+
+
+
 <div class="nav-links">
-  <%= link_to "Allahundkurser", root_path, :class => 'brand' %>
-  
+  <!-- <%= link_to "Allahundkurser", root_path, :class => 'brand' %> -->
+  <!--
   <% if user_signed_in? %>
     <% if can? :update, User %>
       <a href="/users/admin" class="sub_nav">Admin</a>
@@ -8,19 +12,41 @@
       <%= link_to "Admin", courses_path, :class => 'sub_nav' %>
     <% end %>
   <% end %>
+-->
   
-  <%= link_to "Organisationer", orgs_path, :class => 'sub_nav' %>
-  <%= link_to "Kurser", courses_path, :class => 'sub_nav' %>
+  <div class="nav-btn" style="border-right: 1px solid rgba(0,0,0, 0.2)">
+    <span><%= link_to "LÄGG TILL HUNDKURS", orgs_path %></span></div>
+  <div class="nav-btn">
+    <span><%= link_to "HITTA HUNDKURS", courses_path %></span></div>  
+
 </div>
+
 <div id="search-wrapper">
+
+  <div id="login-wrapper"> 
+    <% if user_signed_in? %>
+      <span class="nav-username">Inloggad som <%= current_user.email %></span>
+      <%= link_to('Ändra din profil ', edit_user_registration_path) %>
+    <% else %>
+      <%= link_to('REGISTRERA', new_user_registration_path)  %>
+    <% end %>
+    <span class="nav-space">|<span>
+    <% if user_signed_in? %>
+      <%= link_to(' Logga ut', destroy_user_session_path, :method=>'delete') %>
+    <% else %>
+      <%= link_to(' LOGGA IN', new_user_session_path, :class => 'nav-space')  %>
+    <% end %>
+  </div>
+
   <form action="<%= courses_path %>" method="get" class="form-search">
       <div class="input-prepend">
 
-        <%= submit_tag '', :name => '', :value => 'Sök', :class => 'btn btn-success' %>
+        <%= submit_tag '', :name => '', :value => 'SÖK', :class => 'btn btn-red' %>
         class="search-query" placeholder="Search"
-        <%= text_field_tag :search, params[:search], :placeholder => 'Sök på stad, landskap, kurstyp eller namn', :class => 'input-xlarge search-query' %>      
+        <%= text_field_tag :search, params[:search], :placeholder => '', :class => 'input-medium search-query' %>      
 
       </div>
   </form>
+</div>
 </div>
 
