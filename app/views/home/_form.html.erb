@@ -1,0 +1,7 @@
+
+<% tags_array = Tag.all.map { |tag| [tag.name, tag.id] } %>
+<% provinces_array = Course.provinces.map { |province| [province, province] } %>
+
+<%= select_tag(:location_filter, options_for_select(tags_array)) %>
+<%= select_tag(:province_filter, options_for_select(provinces_array)) %>
+

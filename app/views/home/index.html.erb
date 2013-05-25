@@ -39,36 +39,37 @@
 			<div class="filter-box">
 				<%= render 'form' %>
 			</div>
-		</div>		
+		</div>			
+		
 		<!--
 		<div id="map-geoLite">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
 		-->
-	</div>
 	
-	<!--
+	</div>
 
-	-->
+			<div class="white-box">
 
-	<div class="white-box">
-		<div id="result-wrapper">
-	    	<% @courses.each.with_index do |course, i| %>
-	    	<div id="result" class='muted <%= (i%2 == 0) ? "" : "stripped" %>'>
-	      		<div id="result-header"><%= link_to course.name, course %></div>
-				<div id="result-marker"><img src="../assets/price-marker.png"></div>
-			    <% if course.course_sessions.blank? %>
-			        <div id="result-date"> - </div>
-			      <% else %>
-			        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+			<div class="result-wrapper">
+
+		    	<% @courses.each.with_index do |course, i| %>
+		    	<div id="result" class='muted <%= (i%2 == 0) ? "" : "stripped" %>'>
+		      		<div id="result-header"><%= link_to course.name, course %></div>
+					<div id="result-marker"><img src="../assets/price-marker.png"></div>
+				    <% if course.course_sessions.blank? %>
+				        <div id="result-date"> - </div>
+				      <% else %>
+				        <div id="result-date"><%= course.course_sessions.first.start.strftime("%e/%m") %> - <%= course.course_sessions.last.start.strftime("%e/%m") %></div>
+				    <% end %>
+					<div id="result-marker"><img src="../assets/city-marker.png"></div>
+					<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
+					<% course.course_tags.each do |ct| %>      
+		        		<div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
+				    <% end %>
+		    	</div>
 			    <% end %>
-				<div id="result-marker"><img src="../assets/city-marker.png"></div>
-				<div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
-				<% course.course_tags.each do |ct| %>      
-	        		<div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
-			    <% end %>
-	    	</div>
-		    <% end %>
-		</div>
-	</div> 
+		
+			</div>
+		</div> 	
 
 </div>
 
