@@ -5,7 +5,7 @@ class Course < ActiveRecord::Base
   has_many :course_tags
   has_many :course_sessions
   has_many :tags, :through => :course_tags
-  attr_accessible :name, :price, :city, :province, :location_id, :sessions, :participants, :desc
+  attr_accessible :id, :name, :price, :city, :province, :location_id, :sessions, :participants, :desc
   
   validates :name, :presence => true
 
