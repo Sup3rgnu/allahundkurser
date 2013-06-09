@@ -1,10 +1,8 @@
 <% title 'Alla kurser'%>
 
 <div id="pagewrap">
-  <div id="share-wrapper">
 
-  </div>
-
+<!-- 
   <div id="header-wrapper">
     <div id="header-logo">
       <img src="../assets/logo_test.png">
@@ -15,14 +13,17 @@
     </div>
   </div>
 
-  <div class="spacer span8"></div> 
+  <div class="spacer span8"></div>  -->
 
-  <div id="result-wrapper">  
+  <div class="empty-box"></div>
+  
+  <div class="white-box">
+    <div id="result-wrapper">  
 
     <% if @courses && @courses.first %>
       <% @courses.each.with_index do |course, i| %>
-      <div id="result" class='span8 <%= (i%2 == 0) ? "" : "stripped" %>'>
-        <div id="result-course-name"><%= link_to course.name, course %></div>
+      <div id="result" class='muted <%= (i%2 == 0) ? "" : "stripped" %>'>
+        <div id="result-header"><%= link_to course.name, course %></div>
         <div id="result-marker"><img src="assets/price-marker.png"></div>
         <% if course.course_sessions.blank? %>
           <div id="result-date"> - </div>
@@ -33,7 +34,7 @@
         <div id="result-city"><%= course.location.name %>, <%= course.province %>s l&auml;n</div>
 
         <% course.course_tags.each do |ct| %>      
-                <div id="result-category" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
+                <div id="result-category" class="badge badge-important"><%= link_to ct.tag.name, ct.tag %></div>
         <% end %>
 
       </div>
@@ -50,4 +51,5 @@
 <div class="spacer span8"></div> 
 <div class="span8"><%= link_to 'Tillbaka', orgs_path, :class => 'btn' %></div>
 <div class="spacer-large span8"></div> 
+</div>
 </div>
