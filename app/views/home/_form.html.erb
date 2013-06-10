@@ -1,9 +1,22 @@
 <form method="get">
-<% tags_array = Tag.all.map { |tag| [tag.name, tag.id] } %>
-<% provinces_array = Course.provinces.map { |province| [province, province] } %>
+<% 	tags_array = Array.new 
+	tags_array.push ['Alla typer', 0]
+	tags_default = (!params[:tag_filter].blank?) ? params[:tag_filter] : 0
+	tags = Tag.all.map { |tag| [tag.name, tag.id] } 
+	tags.each do |t|
+		tags_array.push t
+	end %>
 
-<%= select_tag(:tag_filter, options_for_select(tags_array)) %>
-<%= select_tag(:province_filter, options_for_select(provinces_array)) %>
+<% 	provinces_array = Array.new
+	provinces_array.push ['Överallt', nil]
+	provinces_default = (!params[:province_filter].blank?) ? params[:province_filter] : 0
+	provinces = Course.provinces.map { |province| [province, province] } 
+	provinces.each do |p|
+		provinces_array.push p
+	end	%>
+
+<%= select_tag :tag_filter, options_for_select(tags_array, tags_default) %>
+<%= select_tag :province_filter, options_for_select(provinces_array, provinces_default) %>
 
 <input type="submit" value="Filter" />
 </form>
