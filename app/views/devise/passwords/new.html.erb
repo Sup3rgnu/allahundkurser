@@ -1,26 +1,31 @@
-<div class="spacer span12"></div> 
+<% title 'Återställ lösenord' %>
+<div id="pagewrap">
 
-<div class="span4">
+  <div class="empty-box"></div>
+  <div class="white-box-small">
 
-<h1>Behöver du ett nytt lösenord?</h1>
+	<div class="span4">
 
-<div class="spacer-small span4"></div>
+	<h1>Behöver du ett nytt lösenord?</h1>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+	<div class="spacer-small span4"></div>
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email, :autofocus => true %></div>
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	  <%= devise_error_messages! %>
 
-  <div class="spacer-small span4"></div>
+	  <div><%= f.label :email %>
+	  <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.submit "Skicka", :class => 'btn btn-primary' %></div>
-<% end %>
+	  <div class="spacer-small span4"></div>
+
+	  <div><%= f.submit "Skicka", :class => 'btn btn-primary' %></div>
+	<% end %>
+
+	</div>
+
+	<div class="span12">
+		<%= render "devise/shared/links" %>
+	</div>
 
 </div>
-
-<div class="spacer span12"></div>
-
-<div class="span12">
-	<%= render "devise/shared/links" %>
 </div>

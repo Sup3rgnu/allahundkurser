@@ -27,6 +27,10 @@ form_top.gif: form_top-bc9dfcc1bd406dbdd2cb91f0757b1c64.gif
 form_top/index.gif: form_top-bc9dfcc1bd406dbdd2cb91f0757b1c64.gif
 home.png: home-7ad3b6703f623ac5bcbf87d9161cd5cf.png
 home/index.png: home-7ad3b6703f623ac5bcbf87d9161cd5cf.png
+hund-bg.jpg: hund-bg-5b5af9e9405427a81a09906de29746bb.jpg
+hund-bg/index.jpg: hund-bg-5b5af9e9405427a81a09906de29746bb.jpg
+logo.png: logo-1b255dafad80e19929051a705e5c503c.png
+logo/index.png: logo-1b255dafad80e19929051a705e5c503c.png
 logo_test.png: logo_test-a0fa0de64425ba465083b7f29466e69d.png
 logo_test/index.png: logo_test-a0fa0de64425ba465083b7f29466e69d.png
 price-marker.png: price-marker-586b02a55571e2d8b8976d47aa696bfe.png
@@ -37,10 +41,10 @@ search-form-bg.png: search-form-bg-7d0ab16f30ca124f84c673129850df33.png
 search-form-bg/index.png: search-form-bg-7d0ab16f30ca124f84c673129850df33.png
 search-symbol.png: search-symbol-7fe6968565baba625dd7cbf85c984370.png
 search-symbol/index.png: search-symbol-7fe6968565baba625dd7cbf85c984370.png
-application.js: application-14d38ae8f312ee8809edec76aac24233.js
-application/index.js: application-14d38ae8f312ee8809edec76aac24233.js
-application.css: application-1fe5297bc554cd52d656646e8e77c6c8.css
-application/index.css: application-1fe5297bc554cd52d656646e8e77c6c8.css
+application.js: application-7cc8e44d9db20d8d5b0c3b7dfadabcb9.js
+application/index.js: application-7cc8e44d9db20d8d5b0c3b7dfadabcb9.js
+application.css: application-e5096cd02d2252b1affd06d111f0f990.css
+application/index.css: application-e5096cd02d2252b1affd06d111f0f990.css
 glyphicons-halflings-white.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 glyphicons-halflings-white/index.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 glyphicons-halflings.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png

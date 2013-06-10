@@ -1,46 +1,50 @@
 <% title 'Ändra din profil' %>
+<div id="pagewrap">
 
-<div class="spacer span12"></div> 
+  <div class="empty-box"></div>
+  <div class="white-box">
 
-<div class="span4">
+    <div class="span4">
+    <div class="spacer-small span4"></div>
+    <h1>Ändra din profil</h1>
+    
+    <div class="spacer-small span4"></div>
 
-<h1>Ändra din profil</h1>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <%= devise_error_messages! %>
 
-<div class="spacer-small span4"></div>
+      <div><%= f.label :email %>
+      <%= f.email_field :email, :disabled => true %></div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <div><%= f.label :email %>
-  <%= f.email_field :email, :disabled => true %></div>
+      <div><%= f.label :password, 'Nytt lösenord' %> <i>(lämna tomt om du inte vill ändra lösenordet.)</i>
+      <%= f.password_field :password, :autofocus => true, :autocomplete => "off" %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div><%= f.label :password_confirmation, 'Nytt lösenord, igen' %>
+      <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :password, 'Nytt lösenord' %> <i>(lämna tomt om du inte vill ändra lösenordet.)</i>
-  <%= f.password_field :password, :autofocus => true, :autocomplete => "off" %></div>
+      <div><%= f.label :current_password, 'Nuvarande lösenord' %> <i>(Vi behöver ditt lösenord för att genomföra ändringarna)</i>
+      <%= f.password_field :current_password %></div>
+      
+      <div class="spacer-small span4"></div>
 
-  <div><%= f.label :password_confirmation, 'Nytt lösenord, igen' %>
-  <%= f.password_field :password_confirmation %></div>
+      <div><%= f.submit "Update", :value => 'Uppdatera', :class => 'btn btn-primary' %></div>
+    <% end %>
 
-  <div><%= f.label :current_password, 'Nuvarande lösenord' %> <i>(Vi behöver ditt lösenord för att genomföra ändringarna)</i>
-  <%= f.password_field :current_password %></div>
-  
-  <div class="spacer-small span4"></div>
+    </div>
 
-  <div><%= f.submit "Update", :value => 'Spara', :class => 'btn btn-primary' %></div>
-<% end %>
+    <div class="span3">
+      <div class="spacer-small span3"></div>
+      <h1>Missnöjd? Avsluta ditt konto.</h1>
+
+      <span>Heads up! Om du tar bort ditt konto är det permanent, då går det <strong>inte</strong> att återskapa senare.</span>
+      <div class="spacer-small span2"></div>
+
+      <p><%= button_to "Ta bort kontot", registration_path(resource_name), :data => { :confirm => "Vill du ta bort kontot?" }, :method => :delete, :class => 'btn btn-danger' %></p>
+    <div>
 
 </div>
-
-<div class="span4">
-  <h1>Missnöjd? Avsluta ditt konto.</h1>
-
-  <div class="spacer-small span4"></div>
-
-  <span>Heads up! Om du tar bort ditt konto är det permanent, då går det <strong>inte</strong> att återskapa senare.</span>
-  <div class="spacer-small span4"></div>
-
-  <p><%= button_to "Ta bort kontot", registration_path(resource_name), :data => { :confirm => "Vill du ta bort kontot?" }, :method => :delete, :class => 'btn btn-danger' %></p>
-<div>
+</div>

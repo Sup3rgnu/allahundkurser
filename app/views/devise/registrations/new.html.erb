@@ -1,34 +1,36 @@
 <% title 'Skapa ett konto' %>
+<div id="pagewrap">
 
-<div class="spacer span12"></div> 
+  <div class="empty-box"></div>
+  <div class="white-box-small">
 
-<div class="span4">
+  <div class="span4">
 
-<h1>Skapa ett konto!</h1>
-
-<div class="spacer-small span4"></div>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %>
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :password, 'Lösenord' %>
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation, 'Lösenord, igen' %>
-  <%= f.password_field :password_confirmation %></div>
+  <h1>Skapa ett konto!</h1>
 
   <div class="spacer-small span4"></div>
 
-  <div><%= f.submit "Update", :value => 'Skapa', :class => 'btn btn-primary' %></div>
-<% end %>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-</div>
+    <div><%= f.label :email %>
+    <%= f.email_field :email, :autofocus => true %></div>
 
-<div class="spacer span12"></div>
+    <div><%= f.label :password, 'Lösenord' %>
+    <%= f.password_field :password %></div>
 
-<div class="span12">
-	<%= render "devise/shared/links" %>
+    <div><%= f.label :password_confirmation, 'Lösenord, igen' %>
+    <%= f.password_field :password_confirmation %></div>
+
+    <div class="spacer-small span4"></div>
+
+    <div><%= f.submit "Update", :value => 'Skapa', :class => 'btn btn-primary' %></div>
+  <% end %>
+
+  </div>
+
+  <div class="span12">
+  	<%= render "devise/shared/links" %>
+  </div>
+  </div>
 </div>

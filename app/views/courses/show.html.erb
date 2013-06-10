@@ -12,16 +12,18 @@
 
 <div id="pagewrap">
 	
-	<div id="share-wrapper">
-  	</div>
-
-  <div id="header-wrapper">
-    <div id="header-logo">
-      <img src="../assets/logo_test.png">
-    </div>
+    <div class="empty-box">
+    <div id="map-wrapper">
+      <div id="map-google-label">
+        <div id="map_canvas" class="gmap"></div>
+      </div>
+    </div>   
+  
+  </div>
+	<div class="white-box">
     <div id="header-text">
       <% @course.course_tags.each do |ct| %>      
-        <div id="result-category-header" class="btn btn-success"><%= link_to ct.tag.name, ct.tag %></div>
+        <div id="result-category-header" class="badge badge-important"><%= link_to ct.tag.name, ct.tag %></div>
       <% end %>
       <h1><%= @course.name %> kurs</h1>
       <span class="brand"><%= link_to @course.org.name, org_path(@course.org) %></span>
@@ -29,21 +31,8 @@
       <span>Bacon ipsum dolor sit amet chuck shank pork loin fatback jerky tongue spare ribs sirloin, sausage pork belly flank short ribs prosciutto hamburger brisket. Beef salami hamburger boudin tri-tip tail chuck ball tip meatball pork chop turducken strip steak sirloin. Pork chop cow pancetta tongue. Meatball beef jowl pork loin. Spare ribs tail shoulder drumstick, shankle turducken cow frankfurter jowl ribeye meatloaf.</span> 
       <span class="brand">Besök organisationens <%= link_to 'hemsida', @course.org.url %></span>
     </div>
-   </div>
 
-  <div class="spacer span8"></div> 
-  
-  <div id="map-wrapper span8">
-    <div id="map-google-label">
-      <div id="map_canvas" style="width:864px;height:380px" class="gmap"></div>
-    </div>
-  </div>
-  
-  <div id="map-geoLite" style="font-weight:300; color:#999; font-size:9px">This product includes GeoLite data created by MaxMind, available from http://www.maxmind.com</div>
-
-  <div class="spacer span8"></div>
-
-  <div id="result-wrapper">  
+    <div id="result-wrapper">  
 
    <div id="result-legend">
       <div class="span2">Datum</div>
@@ -105,9 +94,7 @@
 
 </div>
 
-<div class="spacer span8"></div> 
-
-<div class="span8">
+<div class="span4">
   <% if !user_signed_in?%>
     <%= link_to 'Boka kursen', edit_course_path(@course), :class => 'btn btn-primary' %>
   <% end %>
@@ -125,4 +112,7 @@
 
 <div class="spacer-small span8"></div>
 
+   </div>
+
+  
 </div>
