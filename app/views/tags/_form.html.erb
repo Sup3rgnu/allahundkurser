@@ -1,4 +1,5 @@
 <%= form_for(@tag) do |f| %>
+
   <% if @tag.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
@@ -11,12 +12,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="field span4">
+    <%= f.label :name, 'Namn på tag/kategori' %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="spacer-small span4"></div>
+
+  <div class="actions span4">
+    <%= f.submit :value => 'Skapa tag', :class => 'btn btn-primary' %>
+    <%= link_to 'Tillbaka', tags_path(), :class => 'btn' %>
   </div>
+
 <% end %>
